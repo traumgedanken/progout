@@ -1,0 +1,10 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Ihor Bulaevskyi">
+<link href="/stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="/stylesheets/{{#auth}}login{{/auth}}{{^auth}}style{{/auth}}.css" rel="stylesheet">
+<style>
+	@import url('https://fonts.googleapis.com/css?family=Montserrat');
+</style>
+<link rel="icon" href="https://res.cloudinary.com/progout/image/upload/c_scale,w_128/v1542101203/root/progout-logo.png">
+<link rel="shortcut icon" href="https://res.cloudinary.com/progout/image/upload/c_scale,w_128/v1542101203/root/progout-logo.png">

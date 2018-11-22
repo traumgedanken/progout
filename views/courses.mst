@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	{{> head}}
+	<title>Курси</title>
+	<meta name="description" content="Курси від наших викладачів">
+</head>
+
+<body>
+	{{> header}}
+	<main role="main" class="container">
+		{{#user.teacher}}
+		<div class="row" style="margin: 5px;">
+			<input class="btn btn-sm btn-outline-primary" type=button onClick="parent.location='/courses/new'" value='Додати новий курс'>
+		</div>
+		{{/user.teacher}}
+
+		<div id="table"></div>
+		<div id="pagination"></div>
+	</main>
+	{{> footer}}
+	{{> scripts}}
+	<script src='/javascripts/models/courses.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+	</div>
+
+
+</body>

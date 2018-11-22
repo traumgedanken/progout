@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{> head}}
+        <title>Логи</title>
+        <meta name="description" content="Список логів" />
+    </head>
+
+    <body>
+        {{> header}}
+        <main role="main" class="container">
+            <div id="table"></div>
+            <div id="pagination"></div>
+        </main>
+        {{> footer}} {{> scripts}}
+        <script src="/javascripts/models/logs.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    </body>
+</html>

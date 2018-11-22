@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{> head}}
+        <title>Реєстрація</title>
+        <meta name="description" content="Progout - це сайт для поширення навчальних завдань" />
+    </head>
+
+    <body>
+        {{>header}}
+        <div class="col-md-6 text-center">
+            {{#error}}{{>error_message}}{{/error}}
+            <form
+                class="form-signin"
+                action="/auth/register"
+                method="post"
+                enctype="multipart/form-data"
+            >
+                <img
+                    class="mb-4"
+                    src="https://res.cloudinary.com/progout/image/upload/v1542101203/root/progout-logo.png"
+                    alt=""
+                    width="72"
+                    height="72"
+                />
+                <input
+                    name="username"
+                    type="username"
+                    id="inputUsername"
+                    class="form-control"
+                    placeholder="Введіть логін"
+                    required
+                    autofocus
+                    minlength = 4 
+                    pattern="[a-zA-Z0-9_-]+"
+                />
+                <input
+                    name="fullname"
+                    type="username"
+                    id="inputFullname"
+                    class="form-control"
+                    placeholder="Введіть ім'я"
+                    required
+                    pattern="^[іІєЄa-zA-Zа-яА-Я]+(([',. -][іІєЄa-zA-Zа-яА-Я ])?[іІєЄa-zA-Zа-яА-Я]*)*$"
+                />
+                <input
+                    name="password"
+                    type="password"
+                    id="inputPassword"
+                    class="form-control"
+                    placeholder="Введіть пароль"
+                    required
+                    minlength=8
+                />
+                <input
+                    name="passwordRepeat"
+                    type="password"
+                    id="inputPasswordRepeat"
+                    class="form-control"
+                    placeholder="Введіть пароль ще раз"
+                    required
+                />
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    Зареєструватися
+                </button>
+                <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+            </form>
+        </div>
+    {{> scripts}}
+    </body>
+</html>

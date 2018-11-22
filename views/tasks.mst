@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	{{> head}}
+	<title>
+Завдання
+	</title>
+	<meta name="description" content="Усі завдання">
+</head>
+
+<body>
+	{{> header}}
+	<main role="main" class="container">
+		<form class="form-inline mt-2 mt-md-0">
+			<input id="search" autocomplete="off" onkeyup="renderTable();" name="taskname" class="form-control mr-sm-2" type="text" placeholder="Знайти завдання" aria-label="Search">
+		</form>
+		<div id="table">Завантаження...</div>
+		<div id="pagination"></div>
+	</main>
+	{{> footer}}
+	{{> scripts}}
+	<script src='/javascripts/models/tasks.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+	</div>
+
+
+</body>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{> head}}
+        {{> syntax_highlight}}
+        <title>{{ task.name }}</title>
+        <meta name="description" content="Умова завдання {{task.id_name}}" />
+    </head>
+
+    <body>
+        {{> header}}
+        <main role="main" class="container">
+            <h1 title="Ідентифікатор завдання">{{ task.name }}</h1>
+            {{#user.isAuthor}}
+            <div class="form-inline">
+                <input
+                    class="btn btn-sm btn-outline-success"
+                    type="button"
+                    onClick="parent.location='/tasks/update/{{task.id_name}}'"
+                    value="Редагувати"
+                />
+                <button class="btn btn-sm btn-outline-danger" id="deleteBtn">
+                    Видалити завдання
+                </button>
+            </div>
+            {{/user.isAuthor}}
+
+            <div class="condition">
+                <p>{{{task.condition}}}</p>
+            </div>
+            <br />
+            <div class="what">
+                <p><a href="{{{task.condition_url}}}">Завантажити умову завдання</a></p>
+                <p>
+                    Завдання належить до курсу:
+                    <a href="/courses/{{task.course.name}}"
+                        ><i>{{ task.course.name }}</i></a
+                    >
+                </p>
+            </div>
+            <div class="modal" id="myModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Обережно</h5>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Відміна"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Ви дійсно бажаєте видалити завдання? Цю дію неможливо відмінити.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="/tasks/delete/{{task.id}}" method="post">
+                                <button type="submit" class="btn btn-danger">Видалити</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        {{> footer}} {{> scripts}}
+        <script src="/javascripts/modal_window.js"></script>
+    </body>
+</html>

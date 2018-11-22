@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{> head}}
+        <title>Progout</title>
+        <meta name="description" content="Створення нового завдання" />
+    </head>
+
+    <body>
+        {{> header}}
+        <main role="main" class="container">
+            <fieldset>
+                <form
+                    action="/tasks/new?course={{course}}"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <!-- Form Name -->
+                    <legend>Нове завдання</legend>
+
+                    <!-- Text input -->
+                    <div class="form-group">
+                        <label class="col-md-5 control-label" for="ncourse_nameame"
+                            >Назва курсу</label
+                        >
+                        <div class="col-md-4">
+                            <input
+                                disabled
+                                name="course_name"
+                                value="{{course}}"
+                                type="text"
+                                placeholder="Введіть назву завдання"
+                                class="form-control input-md"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-group">
+                        <label class="col-md-5 control-label" for="task_name">Назва завдання</label>
+                        <div class="col-md-4">
+                            <input
+                                name="task_name"
+                                type="text"
+                                placeholder="Введіть назву завдання"
+                                class="form-control input-md"
+                                required
+                                autofocus
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-group">
+                        <label class="col-md-5 control-label" for="task_id_name"
+                            >Ідентифікатор завдання</label
+                        >
+                        <div class="col-md-4">
+                            <input
+                                name="task_id_name"
+                                type="text"
+                                placeholder="Введіть ідентифікатор завдання"
+                                class="form-control input-md"
+                                required
+                                pattern="[a-zA-Z0-9_]+"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group files color">
+                            <label>Оберіть файл умови</label>
+                            <input
+                                type="file"
+                                accept=".html, .txt, .md"
+                                name="condition"
+                                class="form-control"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                        Створити
+                    </button>
+                </form>
+            </fieldset>
+        </main>
+
+        {{> footer}} {{> scripts}}
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<header>
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand" href="/">Progout</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+		 aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a {{#home_button}} class="nav-link active" {{/home_button}} {{^home_button}} class="nav-link" {{/home_button}}
+					 href="/">Домівка</a>
+				</li>
+				{{#user}}
+				{{#user.admin}}
+				<li class="nav-item">
+					<a {{#users_button}} class="nav-link active" {{/users_button}} {{^users_button}} class="nav-link"
+					 {{/users_button}} href="/users">Користувачі</a>
+				</li>
+				<li class="nav-item">
+					<a {{#logs_button}} class="nav-link active" {{/logs_button}} {{^logs_button}} class="nav-link"
+					 {{/logs_button}} href="/logs">Логи</a>
+				</li>
+				{{/user.admin}}
+				<li class="nav-item">
+					<a {{#courses_button}} class="nav-link active" {{/courses_button}} {{^courses_button}} class="nav-link"
+					 {{/courses_button}} href="/courses">Курси</a>
+				</li>
+				<li class="nav-item">
+					<a {{#tasks_button}} class="nav-link active" {{/tasks_button}} {{^tasks_button}} class="nav-link"
+					 {{/tasks_button}} href="/tasks">Завдання</a>
+				</li>
+				{{/user}}
+				<li>
+					<a {{#about_button}} class="nav-link active" {{/about_button}} {{^about_button}} class="nav-link"
+					 {{/about_button}} href="/about">Про нас</a>
+				</li>
+			</ul>
+			<form class="form-inline mt-2 mt-md-0">
+				{{#user}}
+				<div class="what"><a href="/profile">{{user.fullname}}</a></div>
+				<input class="btn btn-sm btn-outline-danger" type=button onClick="parent.location='/auth/logout'"
+			 	value='Вийти'>
+				{{/user}}
+				
+				{{^user}}
+				<input class="btn btn-outline-primary" type=button onClick="parent.location='/auth/register'" value='Зареєструватися'>
+				<input class="btn btn-outline-primary" type=button onClick="parent.location='/auth/login'" value='Увійти'>
+				{{/user}}
+			</form>
+
+
+		</div>
+	</nav>
+</header>

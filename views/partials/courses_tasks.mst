@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	{{> head}}
+	<title>
+		{{^error}}{{name}}{{/error}}
+		{{#error}}Помилка{{#error.code}} {{error.code}}{{/error.code}}{{/error}}
+
+	</title>
+	<meta name="description" content="Courses">
+</head>
+
+<body>
+	{{> header}}
+	<main role="main" class="container">
+		{{#error}}
+		{{> error_message}}
+		{{/error}}
+
+		{{^error}}
+		<table class="table table-dark">
+			<tr>
+				<th scope="col">Назва</th>
+			</tr>
+			{{#list}}
+			<tr>
+				<td><a href="/tasks/{{id_name}}"><u>{{name}}</u></a> - <i>{{name}} <div class="what">{{author.fullname}}</div></i></td>
+			</tr>
+			{{/list}}
+		</table>
+
+		<nav aria-label="...">
+			<ul class="pagination">
+				<li {{#prevPage}} class="page-item" {{/prevPage}} {{^prevPage}} class="page-item disabled" {{/prevPage}}>
+					<a class="page-link" href="/courses?page={{prevPage}}" tabindex="-1">
+						<</a> </li> {{#pages}} <li {{#current}} class="page-item active" {{/current}} {{^current}} class="page-item"
+						 {{/current}}><a class="page-link" href="/courses?page={{number}}">{{number}}</a></li>
+				{{/pages}}
+
+				<li {{#nextPage}} class="page-item" {{/nextPage}} {{^nextPage}} class="page-item disabled" {{/nextPage}}>
+					<a class="page-link" href="/courses?page={{nextPage}}">></a>
+				</li>
+			</ul>
+		</nav>
+
+		{{/error}}
+	</main>
+	{{> footer}}
+	{{> scripts}}
+	</div>
+
+
+</body>

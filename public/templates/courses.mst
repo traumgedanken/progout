@@ -1,0 +1,17 @@
+{{^pages}}
+<p class="lead">На жаль ми нічого не знайшли</p>
+{{/pages}}
+
+{{#pages}}
+<table class="table table-dark">
+    <tr>
+        <th scope="col">Назва</th>
+    </tr>
+    {{#list}}
+    <tr>
+        <td><a href="/courses/{{name}}"><u>{{ name }}</u></a> - <i>{{ name }} <div class="what"><a href="/users/{{author.username}}">{{
+                        author.fullname }}</a></i></td>
+    </tr>
+    {{/list}}
+</table>
+{{/pages}}

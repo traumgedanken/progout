@@ -1,0 +1,102 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    background: #333;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+/* Custom page CSS
+  -------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+    padding: 100px 15px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+.container .img {
+    text-align: center;
+}
+.container .details {
+    border-left: 3px solid #ded4da;
+}
+.container .details p {
+    font-size: 15px;
+    font-style: italic;
+}
+
+.pagination a {
+    background: #333;
+    border: solid 1px rgb(24, 24, 24);
+}
+
+.what {
+    font-size: 90%;
+}
+
+.what a {
+    color: rgb(121, 121, 121);
+}
+
+span.teacher_tag {
+    border-radius: 2px;
+    background: #21b684;
+    font-size: 80%;
+    padding: 2px 4px;
+}
+
+span.user_tag {
+    border-radius: 2px;
+    background: #4962a8;
+    font-size: 80%;
+    padding: 2px 4px;
+}
+
+span.admin_tag {
+    border-radius: 2px;
+    background: #b62146;
+    font-size: 80%;
+    padding: 2px 4px;
+}
+
+.form-inline input,
+button {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.log {
+    background: rgb(31, 30, 30);
+    margin: 5px;
+}
+
+.condition p {
+    margin-top: 40px;
+}
+
+tbody {
+    color: white;
+}

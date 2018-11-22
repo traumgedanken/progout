@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{> head}}
+        <title>
+            Оновлення
+            {{ course.name }}
+        </title>
+        <meta name="description" content="Редагувати курс [{{course.name}}]" />
+        <script>
+            function validate(strValue) {
+                allert(lol);
+                var objRegExp = /^[a-z\u00C0-\u00ff]+$/;
+                return objRegExp.test(strValue);
+            }
+        </script>
+    </head>
+
+    <body>
+        {{> header}}
+        <main role="main" class="container">
+            <fieldset>
+                <form
+                    action="/courses/update/{{course.id}}"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <!-- Form Name -->
+                    <legend>
+                        <p class="lead">
+                            Оновлення курсу <b>{{ course.name }}</b>
+                        </p>
+                    </legend>
+                    <!-- Text input -->
+                    <div class="form-group">
+                        <label class="col-md-5 control-label" for="name">Назва курсу</label>
+                        <div class="col-md-4">
+                            <input
+                                value="{{course.name}}"
+                                name="course_name"
+                                type="text"
+                                placeholder="Введіть нову назву"
+                                class="form-control input-md"
+                                required
+                                autofocus
+                                pattern="[a-zA-Z0-9_]+"
+                            />
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                        Оновити
+                    </button>
+                </form>
+            </fieldset>
+        </main>
+
+        {{> footer}} {{> scripts}}
+    </body>
+</html>
