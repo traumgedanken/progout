@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{> head}}
-        <title>Вхід</title>
-        <meta name="description" content="Progout - це сайт для поширення навчальних завдань" />
-    </head>
 
-    <body>
-        {{>header}}
-        <div class="col-md-6 text-center">
-            {{#error}}{{>error_message}}{{/error}}
-            <form action="/auth/login" method="post" class="form-signin">
-                <img
-                    class="mb-4"
-                    src="https://res.cloudinary.com/progout/image/upload/v1542101203/root/progout-logo.png"
-                    alt=""
-                    width="72"
-                    height="72"
-                />
-                <input
-                    name="username"
-                    type="username"
-                    id="inputUsername"
-                    class="form-control"
-                    placeholder="Введіть логін"
-                    required
-                    autofocus
-                />
-                <input
-                    name="password"
-                    type="password"
-                    id="inputPassword"
-                    class="form-control"
-                    placeholder="Введіть пароль"
-                    required
-                />
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
-                <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-            </form>
-        </div>
+<head>
+    {{> head}}
+    <title>Вхід</title>
+    <meta name="description" content="Progout - це сайт для поширення навчальних завдань" />
+</head>
+
+<body>
+    {{>header}}
+    <div class="col-md-6 text-center">
+        {{#error}}{{>error_message}}{{/error}}
+        <form action="/auth/login" method="post" class="form-signin">
+            <img class="mb-4" src="https://res.cloudinary.com/progout/image/upload/v1542101203/root/progout-logo.png"
+                alt="" width="72" height="72" />
+            <input name="username" type="username" id="inputUsername" class="form-control" placeholder="Введіть логін"
+                required autofocus />
+            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Введіть пароль"
+                required />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+        </form>
+    </div>
     {{> scripts}}
-    </body>
+</body>
+
 </html>

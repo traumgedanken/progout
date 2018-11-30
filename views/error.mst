@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{> head}}
-        <title>Помилка</title>
-        <meta name="description" content="{{error.code}}. {{error.message}}" />
-    </head>
 
-    <body>
-        {{> header}}
-        <main role="main" class="container">
-            <div class="lead">
-                <p>{{#error.code}}Помилка {{ error.code }}{{/error.code}}</p>
-                <p>{{#error.message}}{{ error.message }}{{/error.message}}</p>
-            </div>
-        </main>
+<head>
+    {{> head}}
+    <title>Помилка</title>
+    <meta name="description" content="{{error.code}}. {{error.message}}" />
+</head>
 
-        {{> footer}} {{> scripts}}
-    </body>
+<body>
+    {{> header}}
+    <main role="main" class="container">
+        <div class="lead">
+            <p>{{#error.code}}Помилка {{ error.code }}{{/error.code}}</p>
+            <p>{{#error.message}}{{ error.message }}{{/error.message}}</p>
+        </div>
+    </main>
+
+    {{> footer}} {{> scripts}}
+</body>
+
 </html>

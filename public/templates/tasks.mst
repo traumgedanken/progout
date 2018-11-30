@@ -1,5 +1,7 @@
 {{^pages}}
-<p class="lead">На жаль ми нічого не знайшли{{#request}} по запиту <i>{{request}}</i>{{/request}}</p>
+<p class="lead">
+    На жаль ми нічого не знайшли{{#request}} по запиту <i>{{ request }}</i>{{/request}}
+</p>
 {{/pages}}
 
 {{#pages}}
@@ -10,18 +12,15 @@
     {{#list}}
     <tr>
         <td>
-            <a href="/tasks/{{id_name}}"
-                ><u>{{ id_name }}</u></a
-            >
+            <a href="/tasks/{{id_name}}"><u>{{ id_name }}</u></a>
             -
-            <i
-                >{{ name }}
+            <i>{{ name }}
                 <div class="what">
                     <a href="/courses/{{course.name}}">{{ course.name }}</a>
-                </div></i
-            >
+                </div></i>
         </td>
     </tr>
     {{/list}}
 </table>
+
 {{/pages}}

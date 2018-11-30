@@ -1,31 +1,39 @@
-const User = require("./user");
-const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
+const User = require('./user');
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const CourseSchema = new mongoose.Schema(
     {
-        name: { type: String, required: true, unique: true },
+        name: {
+            type: String,
+            required: true,
+            unique: true
+        },
         author: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            ref: 'User'
         },
         tasks: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Task"
+                ref: 'Task'
             }
         ]
     },
-    { timestamps: true }
+    {
+        timestamps: true
+    }
 );
 
-CourseSchema.plugin(uniqueValidator, { message: "is already taken." });
+CourseSchema.plugin(uniqueValidator, {
+    message: 'is already taken.'
+});
 
-const CourseModel = mongoose.model("Course", CourseSchema);
+const CourseModel = mongoose.model('Course', CourseSchema);
 
 class Course {
     static async getAll(params) {
-        if (!params) return await CourseModel.find().populate("author");
+        if (!params) return await CourseModel.find().populate('author', 'fullname');
 
         // params for api
         const args = {
@@ -36,7 +44,8 @@ class Course {
         if (params.author) query.author = params.author;
         return await CourseModel.find(query)
             .skip((args.page - 1) * args.offset)
-            .limit(args.offset);
+            .limit(args.offset)
+            .populate('author', 'fullname');
     }
 
     static async count(params) {
@@ -46,7 +55,9 @@ class Course {
     }
 
     static async getByName(name) {
-        return await CourseModel.findOne({ name }).populate("tasks");
+        return await CourseModel.findOne({
+            name
+        }).populate('tasks');
     }
 
     static async getById(id) {

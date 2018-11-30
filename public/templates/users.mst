@@ -12,9 +12,7 @@
         {{#list}}
         <tr>
             <td>
-                <a alt="fullname" href="../users/{{username}}"
-                    ><u>{{ fullname }}</u></a
-                >
+                <a alt="fullname" href="../users/{{username}}"><u>{{ fullname }}</u></a>
             </td>
             <td alt="username">{{ username }}</td>
         </tr>

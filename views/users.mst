@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{> head}}
-        <title>Користувачі</title>
-        <meta name="description" content="Список користувачів" />
-    </head>
 
-    <body>
-        {{> header}}
-        <main role="main" class="container">
-            <div id="table">Завантаження...</div>
-            <div id="pagination"></div>
-        </main>
-        {{> footer}} {{> scripts}}
-        <script src="/javascripts/models/users.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
-    </body>
+<head>
+    {{> head}}
+    <title>Користувачі</title>
+    <meta name="description" content="Список користувачів" />
+</head>
+
+<body>
+    {{> header}}
+    <main role="main" class="container">
+        <div id="loader"></div>
+        <div class="animate-bottom" id="table">Завантаження...</div>
+        <div id="pagination"></div>
+    </main>
+    {{> footer}} {{> scripts}}
+    <script src="/javascripts/models/users.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+</body>
+
 </html>

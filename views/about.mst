@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{> head}}
-        <title>Про нас</title>
-        <meta name="description" content="Про організацію Progout" />
-    </head>
 
-    <body>
-        {{> header}}
-        <main role="main" class="container">lol</main>
-        {{> footer}} {{> scripts}}
-    </body>
+<head>
+    {{> head}}
+    <title>Про нас</title>
+    <meta name="description" content="Про організацію Progout" />
+</head>
+
+<body>
+    {{> header}}
+    <main role="main" class="container">lol</main>
+    {{> footer}} {{> scripts}}
+</body>
+
 </html>

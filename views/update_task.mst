@@ -1,95 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{> head}}
-        <title>
-            Оновлення
-            {{ task.id_name }}
-        </title>
-        <meta name="description" content="Редагувати завдання [{{task.name}}]" />
-    </head>
 
-    <body>
-        {{> header}}
-        <main role="main" class="container">
-            <fieldset>
-                <form
-                    action="/tasks/update/{{task.id}}"
-                    method="post"
-                    enctype="multipart/form-data"
-                >
-                    <!-- Form Name -->
-                    <legend>
-                        <p class="lead">
-                            Оновлення завдання <b>{{ task.id_name }}</b>
-                        </p>
-                    </legend>
+<head>
+    {{> head}}
+    <title>
+        Оновлення
+        {{ task.id_name }}
+    </title>
+    <meta name="description" content="Редагувати завдання [{{task.name}}]" />
+</head>
 
-                    <!-- Text input -->
-                    <div class="form-group">
-                        <label class="col-md-5 control-label" for="name">Назва курсу</label>
-                        <div class="col-md-4">
-                            <input
-                                disabled
-                                name="course_name"
-                                value="{{task.course.name}}"
-                                type="text"
-                                class="form-control input-md"
-                                required
-                            />
-                        </div>
+<body>
+    {{> header}}
+    <main role="main" class="container">
+        <fieldset>
+            <form action="/tasks/update/{{task.id}}" method="post" enctype="multipart/form-data">
+                <!-- Form Name -->
+                <legend>
+                    <p class="lead">
+                        Оновлення завдання <b>{{ task.id_name }}</b>
+                    </p>
+                </legend>
+
+                <!-- Text input -->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="name">Назва курсу</label>
+                    <div class="col-md-4">
+                        <input disabled name="course_name" value="{{task.course.name}}" type="text" class="form-control input-md"
+                            required />
                     </div>
+                </div>
 
-                    <!-- Text input -->
-                    <div class="form-group">
-                        <label class="col-md-5 control-label" for="name">Назва завдання</label>
-                        <div class="col-md-4">
-                            <input
-                                value="{{task.name}}"
-                                name="task_name"
-                                type="text"
-                                placeholder="Введіть нову назву завдання"
-                                class="form-control input-md"
-                                required
-                                autofocus
-                            />
-                        </div>
+                <!-- Text input -->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="name">Назва завдання</label>
+                    <div class="col-md-4">
+                        <input value="{{task.name}}" name="task_name" type="text" placeholder="Введіть нову назву завдання"
+                            class="form-control input-md" required autofocus />
                     </div>
+                </div>
 
-                    <!-- Text input -->
-                    <div class="form-group">
-                        <label class="col-md-5 control-label" for="id_name"
-                            >Ідентифікатор завдання</label
-                        >
-                        <div class="col-md-4">
-                            <input
-                                value="{{task.id_name}}"
-                                name="task_id_name"
-                                type="text"
-                                placeholder="Введіть новий ідентфікатор завдання"
-                                class="form-control input-md"
-                                required
-                                pattern="[a-zA-Z0-9_]+"
-                            />
-                        </div>
+                <!-- Text input -->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="id_name">Ідентифікатор завдання</label>
+                    <div class="col-md-4">
+                        <input value="{{task.id_name}}" name="task_id_name" type="text" placeholder="Введіть новий ідентфікатор завдання"
+                            class="form-control input-md" required pattern="[a-zA-Z0-9_]+" />
                     </div>
+                </div>
 
-                    <div class="col-md-4 form-group files color">
-                        <label>Оберіть файл умови</label>
-                        <input
-                            type="file"
-                            accept=".html, .txt, .md"
-                            name="condition"
-                            class="form-control"
-                        />
-                    </div>
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-                        Оновити
-                    </button>
-                </form>
-            </fieldset>
-        </main>
+                <div class="col-md-4 form-group files color">
+                    <label>Оберіть файл умови</label>
+                    <input type="file" accept=".html, .txt, .md" name="condition" class="form-control" />
+                </div>
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                    Оновити
+                </button>
+            </form>
+        </fieldset>
+    </main>
 
-        {{> footer}} {{> scripts}}
-    </body>
+    {{> footer}} {{> scripts}}
+</body>
+
 </html>

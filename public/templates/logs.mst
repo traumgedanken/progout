@@ -35,6 +35,6 @@
             </td>
         </tr>
         {{/list}}
-    </tbody>
+        </tbody>
 </table>
 {{/pages}}

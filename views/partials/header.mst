@@ -19,8 +19,8 @@
 					 {{/users_button}} href="/users">Користувачі</a>
 				</li>
 				<li class="nav-item">
-					<a {{#logs_button}} class="nav-link active" {{/logs_button}} {{^logs_button}} class="nav-link"
-					 {{/logs_button}} href="/logs">Логи</a>
+					<a {{#logs_button}} class="nav-link active" {{/logs_button}} {{^logs_button}} class="nav-link" {{/logs_button}}
+					 href="/logs">Логи</a>
 				</li>
 				{{/user.admin}}
 				<li class="nav-item">
@@ -40,10 +40,9 @@
 			<form class="form-inline mt-2 mt-md-0">
 				{{#user}}
 				<div class="what"><a href="/profile">{{user.fullname}}</a></div>
-				<input class="btn btn-sm btn-outline-danger" type=button onClick="parent.location='/auth/logout'"
-			 	value='Вийти'>
+				<input class="btn btn-sm btn-outline-danger" type=button onClick="parent.location='/auth/logout'" value='Вийти'>
 				{{/user}}
-				
+
 				{{^user}}
 				<input class="btn btn-outline-primary" type=button onClick="parent.location='/auth/register'" value='Зареєструватися'>
 				<input class="btn btn-outline-primary" type=button onClick="parent.location='/auth/login'" value='Увійти'>

@@ -22,6 +22,7 @@
 			</button>
 		</div>{{/user.isAuthor}}
 
+		<div id="loader"></div>
 		<div id="table">Завантаження...</div>
 		<div id="pagination"></div>
 
@@ -52,6 +53,4 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
 	<script src="/javascripts/modal_window.js"></script>
 	</div>
-
-
 </body>

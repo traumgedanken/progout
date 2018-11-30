@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
-const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
+const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema(
     {
@@ -9,28 +9,56 @@ const UserSchema = new mongoose.Schema(
             required: true,
             unique: true
         },
-        passwordHash: { type: String },
-        salt: { type: String },
-        role: { type: String, default: "user" },
-        fullname: { type: String },
+        passwordHash: {
+            type: String
+        },
+        salt: {
+            type: String
+        },
+        role: {
+            type: String,
+            default: 'user'
+        },
+        fullname: {
+            type: String
+        },
         avaUrl: {
             type: String,
-            default: "https://lowcars.net/wp-content/uploads/2017/02/userpic.png"
+            default: 'https://lowcars.net/wp-content/uploads/2017/02/userpic.png'
         },
-        isDisabled: { type: Boolean, default: false },
-        bio: { type: String },
-        courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
+        isDisabled: {
+            type: Boolean,
+            default: false
+        },
+        bio: {
+            type: String
+        },
+        courses: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Course'
+            }
+        ],
         telegram: {
-            username: { type: String },
-            chat_id: { type: String, default: null }
+            username: {
+                type: String
+            },
+            chat_id: {
+                type: String,
+                default: null
+            }
         }
     },
-    { timestamps: true }
+    {
+        timestamps: true
+    }
 );
 
-UserSchema.plugin(uniqueValidator, { message: "is already taken." });
+UserSchema.plugin(uniqueValidator, {
+    message: 'is already taken.'
+});
 
-const UserModel = mongoose.model("User", UserSchema);
+const UserModel = mongoose.model('User', UserSchema);
 
 Array.prototype.remove = function() {
     let what,
@@ -50,7 +78,12 @@ class User {
     static async create(username, password, fullname) {
         const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
         const passwordHash = await User.hashPassword(password + process.env.GLOBAL_SALT + salt);
-        return { username, passwordHash, fullname, salt };
+        return {
+            username,
+            passwordHash,
+            fullname,
+            salt
+        };
     }
 
     static async hashPassword(password) {
@@ -91,7 +124,9 @@ class User {
     }
 
     static async getByUsername(username) {
-        return await UserModel.findOne({ username }).populate("courses", "name");
+        return await UserModel.findOne({
+            username
+        }).populate('courses', 'name');
     }
 
     static async insert(user) {
@@ -108,7 +143,9 @@ class User {
         const user = await User.getById(userId);
         user.tasks = user.courses.remove(courseId);
         await user.save();
-        await mongoose.model("Task").deleteMany({ course: courseId });
+        await mongoose.model('Task').deleteMany({
+            course: courseId
+        });
     }
 
     static async update(id, newUser) {
@@ -116,10 +153,10 @@ class User {
         if (newUser.role) user.role = newUser.role;
         if (newUser.fullname) user.fullname = newUser.fullname;
         if (newUser.passwordHash) user.passwordHash = newUser.passwordHash;
-        if (newUser.bio || newUser.bio === "") user.bio = newUser.bio;
+        if (newUser.bio || newUser.bio === '') user.bio = newUser.bio;
         if (newUser.avaUrl) user.avaUrl = newUser.avaUrl;
         if (newUser.isDisabled) user.isDisabled = newUser.isDisabled;
-        if (newUser.telegram && (newUser.telegram.username || newUser.telegram.username === "")) {
+        if (newUser.telegram && (newUser.telegram.username || newUser.telegram.username === '')) {
             user.telegram.username = newUser.telegram.username;
             user.telegram.chat_id = newUser.telegram.chat_id;
         }
@@ -134,8 +171,10 @@ class User {
         const user = await UserModel.findByIdAndDelete(id);
         if (user)
             for (let courseId of user.courses) {
-                await mongoose.model("Course").findByIdAndDelete(courseId);
-                await mongoose.model("Task").deleteMany({ course: courseId });
+                await mongoose.model('Course').findByIdAndDelete(courseId);
+                await mongoose.model('Task').deleteMany({
+                    course: courseId
+                });
             }
         return user;
     }

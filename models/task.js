@@ -1,7 +1,7 @@
-const Course = require("./course");
-const download = require("download");
-const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
+const Course = require('./course');
+const download = require('download');
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const TaskSchema = new mongoose.Schema(
     {
@@ -16,19 +16,26 @@ const TaskSchema = new mongoose.Schema(
             required: true,
             unique: true
         },
-        condition_url: { type: String, required: true },
+        condition_url: {
+            type: String,
+            required: true
+        },
         course: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Course",
-            default: "5bdaf25f678fc1158a481822"
+            ref: 'Course',
+            default: '5bdaf25f678fc1158a481822'
         }
     },
-    { timestamps: true }
+    {
+        timestamps: true
+    }
 );
 
-TaskSchema.plugin(uniqueValidator, { message: "is already taken" });
+TaskSchema.plugin(uniqueValidator, {
+    message: 'is already taken'
+});
 
-const TaskModel = mongoose.model("Task", TaskSchema);
+const TaskModel = mongoose.model('Task', TaskSchema);
 
 class Task {
     constructor(name, id_name, condition_url, course) {
@@ -39,7 +46,7 @@ class Task {
     }
 
     static async getAll(params) {
-        if (!params) return await TaskModel.find().populate("course", "name");
+        if (!params) return await TaskModel.find().populate('course', 'name');
 
         // params for api
         const args = {
@@ -48,17 +55,25 @@ class Task {
         };
         const query = {};
         if (params.course) query.course = params.course;
-        if (params.search) query.name = { $regex: params.search, $options: "i" };
+        if (params.search)
+            query.name = {
+                $regex: params.search,
+                $options: 'i'
+            };
         return await TaskModel.find(query)
             .skip((args.page - 1) * args.offset)
             .limit(args.offset)
-            .populate("course", "name");
+            .populate('course', 'name');
     }
 
     static async count(params) {
         const query = {};
         if (params.course) query.course = params.course;
-        if (params.search) query.name = { $regex: params.search, $options: "i" };
+        if (params.search)
+            query.name = {
+                $regex: params.search,
+                $options: 'i'
+            };
         return await TaskModel.countDocuments(query);
     }
 
@@ -67,13 +82,15 @@ class Task {
     }
 
     static async getByIdAndPopulate(id) {
-        return await TaskModel.findById(id).populate("course");
+        return await TaskModel.findById(id).populate('course');
     }
 
     static async getByName(id_name, withCondition) {
-        const task = await TaskModel.findOne({ id_name })
-            .populate("author", "fullname")
-            .populate("course");
+        const task = await TaskModel.findOne({
+            id_name
+        })
+            .populate('author', 'fullname')
+            .populate('course');
         if (!task || !withCondition) return task;
         const data = await download(task.condition_url);
         task.condition = data.toString();
@@ -90,7 +107,7 @@ class Task {
     }
 
     static async delete(id) {
-        const task = await TaskModel.findByIdAndDelete(id).populate("course", "name");
+        const task = await TaskModel.findByIdAndDelete(id).populate('course', 'name');
         if (task) await Course.deleteTask(task.course.id, task.id);
         return task;
     }

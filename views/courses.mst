@@ -16,7 +16,8 @@
 		</div>
 		{{/user.teacher}}
 
-		<div id="table"></div>
+		<div id="loader"></div>
+		<div class="animate-bottom" id="table"></div>
 		<div id="pagination"></div>
 	</main>
 	{{> footer}}

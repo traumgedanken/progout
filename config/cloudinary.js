@@ -1,5 +1,5 @@
-const cloudinary = require("cloudinary");
-const { promisify } = require("util");
+const cloudinary = require('cloudinary');
+const { promisify } = require('util');
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -10,7 +10,11 @@ cloudinary.config({
 cloudinary.uploadFile = promisify((file, folder, type, callback) => {
     cloudinary.v2.uploader
         .upload_stream(
-            { resource_type: type || "raw", folder, public_id: file.name },
+            {
+                resource_type: type || 'raw',
+                folder,
+                public_id: file.name
+            },
             (err, result) => {
                 if (err) callback(err);
                 else callback(null, result.url);

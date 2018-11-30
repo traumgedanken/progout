@@ -9,12 +9,18 @@
     },
     "rules": {
         "semi": 2,
-        "no-unused-vars": ["error", { "vars": "all", "args": "after-used" }],
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used"
+            }
+        ],
         "no-undefined": "error",
         "no-undef": "error",
         "no-var": "error"
     },
-    "env" : {
+    "env": {
         "es6": true,
         "node": true,
         "browser": true

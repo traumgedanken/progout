@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{> head}}
-        <title>Progout</title>
-        <meta name="description" content="Створення нового курсу" />
-    </head>
 
-    <body>
-        {{> header}}
-        <main role="main" class="container">
-            <fieldset>
-                <form action="/courses/new" method="post" enctype="multipart/form-data">
-                    <!-- Form Name -->
-                    <legend>Новий курс</legend>
-                    <!-- Text input -->
-                    <div class="form-group">
-                        <label class="col-md-5 control-label" for="name">Назва курсу</label>
-                        <div class="col-md-4">
-                            <input
-                                name="course_name"
-                                type="text"
-                                placeholder="Введіть назву курсу"
-                                class="form-control input-md"
-                                required
-                                autofocus
-                                pattern="[a-zA-Z0-9_]+"
-                            />
-                        </div>
+<head>
+    {{> head}}
+    <title>Progout</title>
+    <meta name="description" content="Створення нового курсу" />
+</head>
+
+<body>
+    {{> header}}
+    <main role="main" class="container">
+        <fieldset>
+            <form action="/courses/new" method="post" enctype="multipart/form-data">
+                <!-- Form Name -->
+                <legend>Новий курс</legend>
+                <!-- Text input -->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="name">Назва курсу</label>
+                    <div class="col-md-4">
+                        <input name="course_name" type="text" placeholder="Введіть назву курсу" class="form-control input-md"
+                            required autofocus pattern="[a-zA-Z0-9_]+" minlength="4" maxlength="20" autocomplete="off" />
                     </div>
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-                        Створити
-                    </button>
-                </form>
-            </fieldset>
-        </main>
+                </div>
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                    Створити
+                </button>
+            </form>
+        </fieldset>
+    </main>
 
-        {{> footer}} {{> scripts}}
-    </body>
+    {{> footer}} {{> scripts}}
+</body>
+
 </html>
