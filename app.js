@@ -53,8 +53,6 @@ app.use('/api/v1', require('./routes/api')('/api/v1'));
 app.use('/developer/v1', require('./routes/developer')('/developer/v1'));
 
 const port = process.env.PORT;
-require('./models/mark');
-require('./models/solution');
 
 mongoose
     .connect(

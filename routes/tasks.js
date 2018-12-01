@@ -5,6 +5,15 @@ const express = require('express');
 const Course = require('../models/course');
 const Log = require('../models/log');
 const path = require('path');
+const Solution = require('../models/solution');
+
+async function forLoadSolution(data, req, task) {
+    if (req.user.role !== 'user') return;
+    const solution = await Solution.get({ task: task.id, user: req.user.id });
+    data.score = solution ? (solution.checked ? solution.score : '?') : '?';
+    data.maxScore = task.maxScore || 0;
+    if (solution) data.solutionUrl = solution.fileUrl;
+}
 
 module.exports = rootPath => {
     const router = express.Router();
@@ -42,12 +51,10 @@ module.exports = rootPath => {
     router.get('/:id_name', auth.checkAuth(rootPath), async (req, res) => {
         try {
             const task = await Task.getByName(req.params.id_name, true);
-            if (!task) {
-                await Log.handleError(rootPath, req, res, { code: 404 });
-                return;
-            }
+            if (!task) return await Log.handleError(rootPath, req, res, { code: 404 });
             const data = { tasks_button: true };
             auth.updateData(data, req);
+            await forLoadSolution(data, req, task);
             data.task = task;
             data.course = req.params.id;
             data.user.isAuthor = req.user.role === 'admin' || task.course.author == req.user.id;
@@ -158,6 +165,24 @@ module.exports = rootPath => {
         } catch (err) {
             await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
         }
+    });
+
+    router.post('/:id/loadSolution', auth.checkAuth(rootPath), async (req, res) => {
+        req.files.solution.name = req.user.username + path.extname(req.files.solution.name);
+        const newSolution = {
+            course: req.body.course_id,
+            task: req.params.id,
+            user: req.user.id,
+            fileUrl: await cloudinary.uploadFile(
+                req.files.solution,
+                'solutions/' + req.body.task_id_name,
+                'raw'
+            )
+        };
+        const solution = await Solution.get({ task: req.params.id, user: req.user.id });
+        if (solution) await Solution.update(solution.id, newSolution);
+        else await Solution.insert(newSolution);
+        res.redirect(path.join(rootPath, req.body.task_id_name));
     });
 
     return router;

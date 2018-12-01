@@ -33,9 +33,7 @@
                     <input autocomplete="off" pattern="[a-zA-Z0-9_]+" name="telegramUsername"
                         {{#user.telegram.username}} value={{ user.telegram.username
                         }}
-                        {{/user.telegram.username}} type="text" placeholder="Якщо хочете, залиште
-                        пустим"
-                        class="form-control input-md" />
+                        {{/user.telegram.username}} type="text" placeholder="Якщо хочете, залиште пустим" class="form-control input-md" />
                 </div>
             </div>
 
@@ -49,11 +47,9 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="form-group files color">
-                    <label>Оновити зображення профілю:</label>
-                    <input type="file" accept=".jpg, .png, .jpeg" name="ava" class="form-control" />
-                </div>
+            <div class="col-md-4 form-group files color">
+                <label>Оновити зображення профілю:</label>
+                <input type="file" accept=".jpg, .png, .jpeg" name="ava" class="form-control-file" />
             </div>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Зберегти</button>
         </form>

@@ -22,6 +22,19 @@
         </div>
         {{/user.isAuthor}}
 
+        {{#user.user}}
+        <div class='small'>
+            {{#solutionUrl}}<p>Your score: <a href="{{{solutionUrl}}}">{{score}}</a> / {{maxScore}}</p>{{/solutionUrl}}
+            {{^solutionUrl}}<p>Your score: {{score}} / {{maxScore}}</p>{{/solutionUrl}}
+            <form class="form-inline" method="post" action="/tasks/{{task.id}}/loadSolution" enctype="multipart/form-data">
+                <input type="text" value="{{task.course.id}}" name="course_id" hidden>
+                <input type="text" value="{{task.id_name}}" name="task_id_name" hidden>
+                <input required type="file" name="solution" class="form-control" />
+                <button type="submit" class="btn btn-primary btn-sm">Load solution</button>
+            </form>
+        </div>
+        {{/user.user}}
+
         <div class="condition">
             <p>{{{task.condition}}}</p>
         </div>
@@ -33,7 +46,7 @@
                 <a href="/courses/{{task.course.name}}"><i>{{ task.course.name }}</i></a>
             </p>
         </div>
-        <div class="modal" id="myModal" tabindex="-1" role="dialog">
+        {{^user.user}}<div class="modal" id="myModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -53,6 +66,7 @@
                 </div>
             </div>
         </div>
+        {{/user.user}}
     </main>
     {{> footer}} {{> scripts}}
     <script src="/javascripts/modal_window.js"></script>

@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
-const Task = require('./task');
+const Course = require('./course');
 const User = require('./user');
 
 const SolutionSchema = new mongoose.Schema(
     {
         fileUrl: { type: String, required: true },
+        score: { type: Number, default: 0 },
         checked: { type: Boolean, default: false },
+        course: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
         task: { type: mongoose.Schema.Types.ObjectId, ref: 'Task' },
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
     },
@@ -15,18 +17,30 @@ const SolutionSchema = new mongoose.Schema(
 const SolutionModel = new mongoose.model('Solution', SolutionSchema);
 
 class Solution {
-    static async getAll(params) {
+    static async getAll(params, detailed) {
         if (!params) params = {};
         const query = {};
-        if (params.taskId) query.task = params.taskId;
-        if (params.userId) query.user = params.userId;
+        if (params.course) query.course = params.course;
+        if (params.task) query.task = params.task;
+        if (params.user) query.user = params.user;
         if (params.checked) query.checked = params.checked;
+        if (detailed) return await SolutionModel.find(query).populate();
         return await SolutionModel.find(query);
+    }
+
+    static async get(params) {
+        if (!params) params = {};
+        const query = {};
+        if (params.course) query.task = params.course;
+        if (params.task) query.task = params.task;
+        if (params.user) query.user = params.user;
+        if (params.checked) query.checked = params.checked;
+        return await SolutionModel.findOne(query);
     }
 
     static async insert(solution) {
         const newSolution = await SolutionModel(solution).save();
-        await Task.addSolution(newSolution);
+        await Course.addSolution(newSolution);
         await User.addSolution(newSolution);
         return newSolution;
     }

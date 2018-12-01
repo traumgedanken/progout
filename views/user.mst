@@ -56,7 +56,7 @@
                     </form>
                     {{/user.admin}}
                 </blockquote>
-                Про себе:<p>{{userToDisplay.bio}}</p>
+                {{#userToDisplay.bio}}Про себе:<p>{{userToDisplay.bio}}</p>{{/userToDisplay.bio}}
                 {{#userToDisplay.teacher}}
                 Курси цього викладача:
                 <ul>

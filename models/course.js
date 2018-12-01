@@ -18,6 +18,12 @@ const CourseSchema = new mongoose.Schema(
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Task'
             }
+        ],
+        solutions: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Solution'
+            }
         ]
     },
     {
@@ -92,6 +98,12 @@ class Course {
         const course = await CourseModel.findById(id);
         if (!course) return null;
         course.name = newName;
+        await course.save();
+    }
+
+    static async addSolution(solution) {
+        const course = await CourseModel.findById(solution.course);
+        course.solutions.push(solution.id);
         await course.save();
     }
 }

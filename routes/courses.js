@@ -3,6 +3,7 @@ const auth = require('../config/auth');
 const express = require('express');
 const Log = require('../models/log');
 const path = require('path');
+const Solution = require('../models/solution');
 
 module.exports = rootPath => {
     const router = express.Router();
@@ -16,6 +17,16 @@ module.exports = rootPath => {
         } catch (err) {
             await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
         }
+    });
+
+    router.get('/:name/check', auth.checkTeacher(rootPath), async (req, res) => {
+        const data = { courses_button: true };
+        auth.updateData(data, req);
+        const course = await Course.getByName(req.params.name);
+        if (req.user.role !== 'admin' && req.user.id != course.author)
+            return await Log.handleError(rootPath, req, res, { code: 403 });
+        const solutions = await Solution.getAll({ course: course.id }, true);
+        res.json(solutions);
     });
 
     router.get('/new', auth.checkTeacher(rootPath), (req, res) => {

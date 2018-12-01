@@ -39,12 +39,6 @@ const UserSchema = new mongoose.Schema(
                 ref: 'Course'
             }
         ],
-        marks: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Mark'
-            }
-        ],
         solutions: [
             {
                 type: mongoose.Schema.Types.ObjectId,
@@ -189,12 +183,6 @@ class User {
                 });
             }
         return user;
-    }
-
-    static async addMark(mark) {
-        const user = await UserModel.findById(mark.user);
-        user.marks.push(mark.id);
-        await user.save();
     }
 
     static async addSolution(solution) {
