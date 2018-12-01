@@ -39,6 +39,18 @@ const UserSchema = new mongoose.Schema(
                 ref: 'Course'
             }
         ],
+        marks: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Mark'
+            }
+        ],
+        solutions: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Solution'
+            }
+        ],
         telegram: {
             username: {
                 type: String
@@ -177,6 +189,18 @@ class User {
                 });
             }
         return user;
+    }
+
+    static async addMark(mark) {
+        const user = await UserModel.findById(mark.user);
+        user.marks.push(mark.id);
+        await user.save();
+    }
+
+    static async addSolution(solution) {
+        const user = await UserModel.findById(solution.user);
+        user.solutions.push(solution.id);
+        await user.save();
     }
 }
 

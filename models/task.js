@@ -24,7 +24,19 @@ const TaskSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Course',
             default: '5bdaf25f678fc1158a481822'
-        }
+        },
+        marks: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Mark'
+            }
+        ],
+        solutions: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Solution'
+            }
+        ]
     },
     {
         timestamps: true
@@ -119,6 +131,18 @@ class Task {
         if (newTask.id_name) task.id_name = newTask.id_name;
         if (newTask.condition_url) task.condition_url = newTask.condition_url;
         return await task.save();
+    }
+
+    static async addMark(mark) {
+        const task = await TaskModel.findById(mark.task);
+        task.marks.push(mark.id);
+        await task.save();
+    }
+
+    static async addSolution(solution) {
+        const task = await TaskModel.findById(solution.task);
+        task.solutions.push(solution.id);
+        await task.save();
     }
 }
 
