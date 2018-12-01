@@ -38,15 +38,3 @@ class Mark {
 }
 
 module.exports = Mark;
-
-async function l() {
-    await Mark.insert({
-        fileUrl: 'a.com',
-        user: '5c013266b3abf44ef3dad004',
-        task: '5bff8598e3414c40e38cdd99',
-        course: '5bf7165eb7415c533425cac2',
-        point: 7
-    });
-}
-
-l();
