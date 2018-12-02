@@ -39,7 +39,7 @@ const CourseModel = mongoose.model('Course', CourseSchema);
 
 class Course {
     static async getAll(params) {
-        if (!params) return await CourseModel.find().populate('author', 'fullname');
+        if (!params) return await CourseModel.find().populate('author');
 
         // params for api
         const args = {
@@ -51,7 +51,7 @@ class Course {
         return await CourseModel.find(query)
             .skip((args.page - 1) * args.offset)
             .limit(args.offset)
-            .populate('author', 'fullname');
+            .populate('author');
     }
 
     static async count(params) {

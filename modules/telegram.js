@@ -38,9 +38,9 @@ if (userBot)
 
 module.exports = {
     sendMessage: async (user, message) => {
-        if (!user.telegram.chat_id) return;
         if (!userBot)
-            return console.log(`\nMessage for \`user.telegram.username\`:\n` + message + '\n');
+            return console.log(`\nMessage for \`${user.telegram.username}\`:\n` + message + '\n');
+        if (!user.telegram.chat_id) return;
         await userBot.sendMessage({
             chat_id: user.telegram.chat_id,
             text: message,

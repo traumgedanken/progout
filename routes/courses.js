@@ -4,6 +4,8 @@ const express = require('express');
 const Log = require('../models/log');
 const path = require('path');
 const Solution = require('../models/solution');
+const Telegram = require('../modules/telegram');
+const User = require('../models/user');
 
 module.exports = rootPath => {
     const router = express.Router();
@@ -20,13 +22,17 @@ module.exports = rootPath => {
     });
 
     router.get('/:name/check', auth.checkTeacher(rootPath), async (req, res) => {
-        const data = { courses_button: true };
-        auth.updateData(data, req);
-        const course = await Course.getByName(req.params.name);
-        if (req.user.role !== 'admin' && req.user.id != course.author)
-            return await Log.handleError(rootPath, req, res, { code: 403 });
-        const solutions = await Solution.getAll({ course: course.id }, true);
-        res.json(solutions);
+        try {
+            const course = await Course.getByName(req.params.name);
+            if (req.user.role !== 'admin' && req.user.id != course.author)
+                return await Log.handleError(rootPath, req, res, { code: 403 });
+            const solutions = await Solution.getAll({ course: course.id, checked: false }, true);
+            const data = { courses_button: true, list: solutions };
+            auth.updateData(data, req);
+            res.render('solutions', data);
+        } catch (err) {
+            await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
+        }
     });
 
     router.get('/new', auth.checkTeacher(rootPath), (req, res) => {
@@ -111,8 +117,27 @@ module.exports = rootPath => {
             await Course.update(req.params.id, req.body.course_name);
             res.redirect(path.join(rootPath, req.body.course_name));
         } catch (err) {
-            req.flash('message', 'Курс з такою назвою уже існує');
-            res.redirect('/error');
+            await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
+        }
+    });
+
+    router.post('/check/:solution_id', auth.checkTeacher(rootPath), async (req, res) => {
+        try {
+            await Solution.update(req.params.solution_id, {
+                score: req.body.score,
+                checked: true
+            });
+            const solution = await Solution.getById(req.params.solution_id, true);
+            const user = await User.getById(solution.user.id);
+            await Telegram.sendMessage(
+                user,
+                `Your task \`/${solution.course.name}/${
+                    solution.task.id_name
+                }\` was checked.\nResult: ${solution.score} / ${solution.task.maxScore}`
+            );
+            res.redirect(`/courses/${solution.course.name}/check`);
+        } catch (err) {
+            await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
         }
     });
 

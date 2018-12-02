@@ -170,6 +170,7 @@ module.exports = rootPath => {
     router.post('/:id/loadSolution', auth.checkAuth(rootPath), async (req, res) => {
         req.files.solution.name = req.user.username + path.extname(req.files.solution.name);
         const newSolution = {
+            checked: false,
             course: req.body.course_id,
             task: req.params.id,
             user: req.user.id,

@@ -17,6 +17,8 @@
 			 value='Додати нове завдання'>
 			<input class="btn btn-sm btn-outline-success" type=button onClick="parent.location='/courses/update/{{course.name}}'"
 			 value='Редагувати курс'>
+			<input class="btn btn-sm btn-outline-success" type=button onClick="parent.location='/courses/{{course.name}}/check'"
+			 value='Check solutions'>
 			<button class="btn btn-sm btn-outline-danger" id="deleteBtn">
 				Видалити курс
 			</button>
