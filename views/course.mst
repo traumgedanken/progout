@@ -12,6 +12,8 @@
 	<main role="main" class="container">
 		<h2 id="courseName">{{course.name}}</h2>
 		<p id="courseId" hidden>{{course.id}}</p>
+		<div class="form-inline"><input class="btn btn-sm btn-outline-primary" type=button onClick="parent.location='/courses/{{course.name}}/score'"
+			 value='All scores'></div>
 		{{#user.isAuthor}}<div class="form-inline">
 			<input class="btn btn-sm btn-outline-primary" type=button onClick="parent.location='/tasks/new?course={{course.name}}'"
 			 value='Додати нове завдання'>

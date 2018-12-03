@@ -7,6 +7,26 @@ const Solution = require('../models/solution');
 const Telegram = require('../modules/telegram');
 const User = require('../models/user');
 
+function getUserScore(solutions) {
+    return new Promise(resolve => {
+        const users = [];
+        for (let solution of solutions)
+            if (users[solution.user.id]) users[solution.user.id].score += solution.score;
+            else
+                users[solution.user.id] = {
+                    fullname: solution.user.fullname,
+                    username: solution.user.username,
+                    score: solution.score
+                };
+        const foo = [];
+        for (const user in users) if (user != 'remove') foo.push(users[user]);
+        foo.sort((a, b) => {
+            return b.score - a.score;
+        });
+        resolve(foo);
+    });
+}
+
 module.exports = rootPath => {
     const router = express.Router();
 
@@ -16,6 +36,23 @@ module.exports = rootPath => {
             auth.updateData(data, req);
             if (req.user.role === 'admin') data.user.teacher = true;
             res.render('courses', data);
+        } catch (err) {
+            await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
+        }
+    });
+
+    router.get('/:name/score', auth.checkAuth(rootPath), async (req, res) => {
+        try {
+            const course = await Course.getByName(req.params.name);
+            const solutions = await Solution.getAll({ course: course.id }, true);
+            const users = await getUserScore(solutions);
+
+            const foo = users.find(x => x.username === req.user.username);
+            if (foo) foo.current = true;
+
+            const data = { list: users, courses_button: true, course_name: course.name };
+            auth.updateData(data, req);
+            res.render('score', data);
         } catch (err) {
             await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
         }

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <title>Scores: {{course_name}}</title>
+</head>
+
+<body>
+    {{> header}}
+    <main role="main" class="container">
+        <table class="table table-dark">
+            <h2>Scores for <a href="/courses/{{course_name}}"><i>{{course_name}}</i></a></h2>
+            <tr>
+                <th scope="col">User</th>
+                <th scope="col">Score</th>
+            </tr>
+            {{#list}}
+            <tr {{#current}} class="table-dark" {{/current}}>
+                <td><a href="/users/{{username}}">{{fullname}}</a></td>
+                <td>{{score}}</td>
+            </tr>
+            {{/list}}
+        </table>
+    </main>
+    {{> footer}}
+    {{> scripts}}
+    </div>
+
+
+</body>
