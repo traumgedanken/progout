@@ -5,3 +5,5 @@
 </script>
 <script src="/javascripts/design/popper.min.js"></script>
 <script src="/javascripts/design/bootstrap.js"></script>
+<!-- версия для разработки, отображает полезные предупреждения в консоли -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
