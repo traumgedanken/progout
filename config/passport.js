@@ -1,5 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 const BasicStrategy = require('passport-http').BasicStrategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passport = require('passport');
 const User = require('../models/user');
 
@@ -64,12 +65,29 @@ passport.use(
     'basic',
     new BasicStrategy(async function(username, password, done) {
         const user = await User.getByUsername(username);
-        if (!user) {
-            done(null, false);
-            return;
-        }
+        if (!user) return done(null, false);
         const validPassword = await User.validatePassword(user, password);
         if (validPassword) done(null, user);
         else done(null, false);
     })
+);
+
+const fs = require('fs');
+
+passport.use(
+    'google',
+    new GoogleStrategy(
+        {
+            clientID: '797538031006-6s2c97ql5up04979op6o2sr7m57lss7p.apps.googleusercontent.com',
+            clientSecret: 'YJcBaS1lahFpwEOtuZ3oXxOu',
+            callbackURL: 'http://localhost:3000/auth/google/cb'
+        },
+        async (accessToken, refreshToken, profile, done) => {
+            fs.writeFileSync(__dirname + '/me.json', JSON.stringify(profile, null, 4), 'utf8');
+            const user =
+                (await User.getByOpenId(profile.id)) || (await User.createGoogleUser(profile));
+
+            return done(null, user);
+        }
+    )
 );

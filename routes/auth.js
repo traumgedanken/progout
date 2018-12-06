@@ -34,5 +34,19 @@ module.exports = rootPath => {
         res.redirect('/');
     });
 
+    router.get('/login/google', passport.authenticate('google', { scope: ['email'] }), () => {
+        // The request will be redirected to Google for authentication, so
+        // this function will not be called.
+    });
+
+    router.get(
+        '/google/cb',
+        passport.authenticate('google', { failureRedirect: '/auth/login/' }),
+        (req, res) => {
+            // Successful authentication, redirect home.
+            res.redirect('/');
+        }
+    );
+
     return router;
 };

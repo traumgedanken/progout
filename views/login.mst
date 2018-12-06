@@ -19,10 +19,13 @@
             <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Введіть пароль"
                 required />
             <button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+            </p>
         </form>
+        <a href="/auth/login/google"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--FGeepbF---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/dpiytaii5nezptwibem4.png"></a>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </div>
     {{> scripts}}
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 
 </html>

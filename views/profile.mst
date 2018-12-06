@@ -41,9 +41,8 @@
             <div class="form-group">
                 <label class="col-md-5 control-label" for="bio">Про себе:</label>
                 <div class="col-md-4">
-                    <input autocomplete="off" maxlength="200" {{#user.bio}} value={{ user.bio
-                        }}
-                        {{/user.bio}} name="bio" type="text" placeholder="Розкажіть про себе" class="form-control input-md" />
+                    <input autocomplete="off" maxlength="200" {{#user.bio}} value="{{user.bio}}" {{/user.bio}} name="bio"
+                        type="text" placeholder="Розкажіть про себе" class="form-control input-md" />
                 </div>
             </div>
 

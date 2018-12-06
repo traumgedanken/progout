@@ -6,7 +6,6 @@ const UserSchema = new mongoose.Schema(
     {
         username: {
             type: String,
-            required: true,
             unique: true
         },
         passwordHash: {
@@ -15,6 +14,7 @@ const UserSchema = new mongoose.Schema(
         salt: {
             type: String
         },
+        googleId: { type: String },
         role: {
             type: String,
             default: 'user'
@@ -135,7 +135,23 @@ class User {
         }).populate('courses', 'name');
     }
 
+    static async getByOpenId(googleId) {
+        return await UserModel.findOne({
+            googleId
+        }).populate('courses', 'name');
+    }
+
     static async insert(user) {
+        return await new UserModel(user).save();
+    }
+
+    static async createGoogleUser(profile) {
+        const user = {
+            fullname: profile.displayName,
+            avaUrl: profile._json.image.url + '0',
+            googleId: profile.id,
+            username: profile.emails[0].value.slice(0, profile.emails[0].value.indexOf('@'))
+        };
         return await new UserModel(user).save();
     }
 
