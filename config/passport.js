@@ -43,7 +43,7 @@ passport.use(
 );
 
 passport.use(
-    'local-login',
+    'local-signin',
     new LocalStrategy(
         {
             passReqToCallback: true
@@ -78,9 +78,9 @@ passport.use(
     'google',
     new GoogleStrategy(
         {
-            clientID: '797538031006-6s2c97ql5up04979op6o2sr7m57lss7p.apps.googleusercontent.com',
-            clientSecret: 'YJcBaS1lahFpwEOtuZ3oXxOu',
-            callbackURL: 'http://localhost:3000/auth/google/cb'
+            clientID: process.env.GOOGLE_API_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_API_CLIENT_SECRET,
+            callbackURL: process.env.GOOGLE_API_CALLBACK_URL
         },
         async (accessToken, refreshToken, profile, done) => {
             fs.writeFileSync(__dirname + '/me.json', JSON.stringify(profile, null, 4), 'utf8');

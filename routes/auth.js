@@ -5,26 +5,26 @@ const path = require('path');
 module.exports = rootPath => {
     const router = express.Router();
 
-    router.get('/register', (req, res) => {
-        res.render('register', { auth: true, error: { message: req.flash('message')[0] } });
+    router.get('/signup', (req, res) => {
+        res.render('signup', { auth: true, error: { message: req.flash('message')[0] } });
     });
 
     router.post(
-        '/register',
+        '/signup',
         passport.authenticate('local-signup', {
-            failureRedirect: path.join(rootPath, 'register'),
+            failureRedirect: path.join(rootPath, 'signup'),
             successRedirect: '/'
         })
     );
 
-    router.get('/login', (req, res) => {
-        res.render('login', { auth: true, error: { message: req.flash('message')[0] } });
+    router.get('/signin', (req, res) => {
+        res.render('signin', { auth: true, error: { message: req.flash('message')[0] } });
     });
 
     router.post(
-        '/login',
-        passport.authenticate('local-login', {
-            failureRedirect: path.join(rootPath, 'login'),
+        '/signin',
+        passport.authenticate('local-signin', {
+            failureRedirect: path.join(rootPath, 'signin'),
             successRedirect: '/'
         })
     );

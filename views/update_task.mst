@@ -4,10 +4,8 @@
 <head>
     {{> head}}
     <title>
-        Оновлення
-        {{ task.id_name }}
+        Edit task {{task.id_name}}
     </title>
-    <meta name="description" content="Редагувати завдання [{{task.name}}]" />
 </head>
 
 <body>
@@ -18,13 +16,13 @@
                 <!-- Form Name -->
                 <legend>
                     <p class="lead">
-                        Оновлення завдання <b>{{ task.id_name }}</b>
+                        Edit task <b>{{ task.id_name }}</b>
                     </p>
                 </legend>
 
                 <!-- Text input -->
                 <div class="form-group">
-                    <label class="col-md-5 control-label" for="name">Назва курсу</label>
+                    <label class="col-md-5 control-label" for="name">Course name</label>
                     <div class="col-md-4">
                         <input disabled name="course_name" value="{{task.course.name}}" type="text" class="form-control input-md"
                             required />
@@ -33,28 +31,28 @@
 
                 <!-- Text input -->
                 <div class="form-group">
-                    <label class="col-md-5 control-label" for="name">Назва завдання</label>
+                    <label class="col-md-5 control-label" for="name">Task name</label>
                     <div class="col-md-4">
-                        <input value="{{task.name}}" name="task_name" type="text" placeholder="Введіть нову назву завдання"
+                        <input value="{{task.name}}" name="task_name" type="text" placeholder="Enter new task name"
                             class="form-control input-md" required autofocus />
                     </div>
                 </div>
 
                 <!-- Text input -->
                 <div class="form-group">
-                    <label class="col-md-5 control-label" for="id_name">Ідентифікатор завдання</label>
+                    <label class="col-md-5 control-label" for="id_name">Task identifier</label>
                     <div class="col-md-4">
-                        <input value="{{task.id_name}}" name="task_id_name" type="text" placeholder="Введіть новий ідентфікатор завдання"
+                        <input value="{{task.id_name}}" name="task_id_name" type="text" placeholder="Enter new taks identifier"
                             class="form-control input-md" required pattern="[a-zA-Z0-9_]+" />
                     </div>
                 </div>
 
                 <div class="col-md-4 form-group files color">
-                    <label>Оберіть файл умови</label>
+                    <label>Condition file</label>
                     <input type="file" accept=".html, .txt, .md" name="condition" class="form-control" />
                 </div>
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-                    Оновити
+                    Edit
                 </button>
             </form>
         </fieldset>

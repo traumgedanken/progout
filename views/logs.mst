@@ -3,15 +3,14 @@
 
 <head>
     {{> head}}
-    <title>Логи</title>
-    <meta name="description" content="Список логів" />
+    <title>Logs</title>
 </head>
 
 <body>
     {{> header}}
     <main role="main" class="container">
         <div id="loader"></div>
-        <div class="animate-bottom" id="table"></div>
+        <div class="animate-bottom" id="table">Loading...</div>
         <div id="pagination"></div>
     </main>
     {{> footer}} {{> scripts}}

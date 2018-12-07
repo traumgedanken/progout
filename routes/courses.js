@@ -9,7 +9,7 @@ const User = require('../models/user');
 
 function getUserScore(solutions) {
     return new Promise(resolve => {
-        const users = [];
+        const users = {};
         for (let solution of solutions)
             if (users[solution.user.id]) users[solution.user.id].score += solution.score;
             else

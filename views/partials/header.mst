@@ -44,8 +44,8 @@
 				{{/user}}
 
 				{{^user}}
-				<input class="btn btn-outline-primary" type=button onClick="parent.location='/auth/register'" value='Зареєструватися'>
-				<input class="btn btn-outline-primary" type=button onClick="parent.location='/auth/login'" value='Увійти'>
+				<input class="btn btn-outline-primary" type=button onClick="parent.location='/auth/signup'" value='Зареєструватися'>
+				<input class="btn btn-outline-primary" type=button onClick="parent.location='/auth/signin'" value='Увійти'>
 				{{/user}}
 			</form>
 

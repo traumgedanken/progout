@@ -42,15 +42,7 @@ module.exports = rootPath => {
             res.redirect(path.join(rootPath, user.username));
             await telegram.sendMessage(
                 user,
-                'Ваша роль була змінена на `' +
-                    (user.role === 'admin'
-                        ? 'Адміністратор'
-                        : user.role === 'user'
-                        ? 'Користувач'
-                        : user.role === 'teacher'
-                        ? 'Викладач'
-                        : 'Гість') +
-                    '`'
+                `Your role was changed to \`${user.role || 'guest'}\``
             );
         } catch (err) {
             await Log.handleError(rootPath, req, res, { code: 500, message: err.message });

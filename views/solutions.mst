@@ -3,8 +3,7 @@
 
 <head>
     {{> head}}
-    <title>Курси</title>
-    <meta name="description" content="Курси від наших викладачів">
+    <title>Solutions</title>
 </head>
 
 <body>

@@ -11,7 +11,7 @@
     {{> header}}
     <main role="main" class="container">
         <div class="lead">
-            <p>{{#error.code}}Помилка {{ error.code }}{{/error.code}}</p>
+            <p>{{#error.code}}Error {{ error.code }}{{/error.code}}</p>
             <p>{{#error.message}}{{ error.message }}{{/error.message}}</p>
         </div>
     </main>

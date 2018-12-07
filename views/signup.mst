@@ -3,8 +3,7 @@
 
 <head>
     {{> head}}
-    <title>Реєстрація</title>
-    <meta name="description" content="Progout - це сайт для поширення навчальних завдань" />
+    <title>Signup</title>
 </head>
 
 <body>
@@ -16,26 +15,27 @@
                 alt="" width="72" height="72" />
 
             <input onkeyup="checkUsername()" autocomplete="off" name="username" type="username" id="inputUsername"
-                class="form-control" placeholder="Введіть логін" required autofocus minlength="4" maxlength="20" />
+                class="form-control" placeholder="Enter username" required autofocus minlength="4" maxlength="20" />
             <small id="usernameHelpBlock" class="form-text text-muted"></small>
 
             <input onkeyup="checkFullname()" minlength="4" maxlength="20" autocomplete="off" name="fullname" type="username"
-                id="inputFullname" class="form-control" placeholder="Введіть ім'я" required />
+                id="inputFullname" class="form-control" placeholder="Enter fullname" required />
             <small id="fullnameHelpBlock" class="form-text text-muted"></small>
 
             <input onkeyup="validatePassword()" name="password" type="password" id="inputPassword" class="form-control"
-                placeholder="Введіть пароль" required minlength="8" maxlength="20" />
+                placeholder="Enter password" required minlength="8" maxlength="20" />
             <small id="passwordHelpBlock" class="form-text text-muted"></small>
 
             <input onkeyup="validatePasswordEqual()" name="passwordRepeat" type="password" id="inputPasswordRepeat"
-                class="form-control" placeholder="Введіть пароль ще раз" required />
+                class="form-control" placeholder="Repeat password" required />
             <small id="passwordRepeatHelpBlock" class="form-text text-muted"></small>
 
             <button id="submitBtn" class="btn btn-lg btn-primary btn-block disabled" type="submit">
-                Зареєструватися
+                Signup
             </button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
         </form>
+        <a href="/auth/login/google"><img src="https://res.cloudinary.com/progout/image/upload/c_scale,w_200/v1544135849/root/google_auth.png"></a>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </div>
     {{> scripts}}
     <script src='/javascripts/registration.js'></script>

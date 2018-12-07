@@ -3,8 +3,7 @@
 
 <head>
     {{> head}}
-    <title>Про нас</title>
-    <meta name="description" content="Про організацію Progout" />
+    <title>About</title>
 </head>
 
 <body>

@@ -3,7 +3,7 @@
 
 <head>
     {{> head}}
-    <title>Мій профіль</title>
+    <title>My profile</title>
     <meta name="description" content="{{userToDisplay.fullname}}: {{userToDisplay.bio}}" />
 </head>
 
@@ -12,45 +12,43 @@
     <main role="main" class="container">
         <form action="/users/update/{{user.id}}" method="post" enctype="multipart/form-data">
             <!-- Form Name -->
-            <legend>Редагувати <a href="/users/{{user.username}}">профіль</a></legend>
+            <legend>Edit <a href="/users/{{user.username}}">profile</a></legend>
 
             <!-- Text input -->
             <div class="form-group">
-                <label class="col-md-5 control-label" for="fullname">Ім'я:</label>
+                <label class="col-md-5 control-label" for="fullname">Fullname:</label>
                 <div class="col-md-4">
                     <input autocomplete="off" minlength="4" maxlength="20" name="fullname" value="{{user.fullname}}"
-                        type="text" placeholder="Введіть ваше ім'я" class="form-control input-md" pattern="^[іІєЄa-zA-Zа-яА-Я]+(([',. -][іІєЄa-zA-Zа-яА-Я ])?[іІєЄa-zA-Zа-яА-Я]*)*$" />
+                        type="text" placeholder="Enter your fullname" class="form-control input-md" pattern="^[іІєЄa-zA-Zа-яА-Я]+(([',. -][іІєЄa-zA-Zа-яА-Я ])?[іІєЄa-zA-Zа-яА-Я]*)*$" />
                 </div>
             </div>
 
             <!-- Text input -->
             <div class="form-group">
                 <div class="col-md-4">
-                    <label class="control-label" for="telegramUsername">Telegram юзернейм: (<small>для оповіщень
-                            через
-                            <a href="http://t.me/progout_bot" target="_blank">@progout_bot</a>
-                            після зміни цього поля напишіть боту будь-яке повідомлення)</small></label>
+                    <label class="control-label" for="telegramUsername">Telegram-username: <abbr title="To recieve notification via @progout_bot send bot any message after changing this field">?</abbr>
+                    </label>
                     <input autocomplete="off" pattern="[a-zA-Z0-9_]+" name="telegramUsername"
                         {{#user.telegram.username}} value={{ user.telegram.username
                         }}
-                        {{/user.telegram.username}} type="text" placeholder="Якщо хочете, залиште пустим" class="form-control input-md" />
+                        {{/user.telegram.username}} type="text" placeholder="Leave empty if you want" class="form-control input-md" />
                 </div>
             </div>
 
             <!-- Text input -->
             <div class="form-group">
-                <label class="col-md-5 control-label" for="bio">Про себе:</label>
+                <label class="col-md-5 control-label" for="bio">Bio:</label>
                 <div class="col-md-4">
                     <input autocomplete="off" maxlength="200" {{#user.bio}} value="{{user.bio}}" {{/user.bio}} name="bio"
-                        type="text" placeholder="Розкажіть про себе" class="form-control input-md" />
+                        type="text" placeholder="Few words about yourself" class="form-control input-md" />
                 </div>
             </div>
 
             <div class="col-md-4 form-group files color">
-                <label>Оновити зображення профілю:</label>
+                <label>Profile pic:</label>
                 <input type="file" accept=".jpg, .png, .jpeg" name="ava" class="form-control-file" />
             </div>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Зберегти</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Save</button>
         </form>
     </main>
     {{> footer}} {{> scripts}}

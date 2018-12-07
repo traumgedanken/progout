@@ -3,8 +3,7 @@
 
 <head>
     {{> head}}
-    <title>Progout</title>
-    <meta name="description" content="Progout - це сайт для поширення навчальних завдань" />
+    <title>Progout API</title>
 </head>
 
 <body>

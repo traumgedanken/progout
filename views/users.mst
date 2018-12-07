@@ -3,15 +3,14 @@
 
 <head>
     {{> head}}
-    <title>Користувачі</title>
-    <meta name="description" content="Список користувачів" />
+    <title>Users</title>
 </head>
 
 <body>
     {{> header}}
     <main role="main" class="container">
         <div id="loader"></div>
-        <div class="animate-bottom" id="table">Завантаження...</div>
+        <div class="animate-bottom" id="table">Loading...</div>
         <div id="pagination"></div>
     </main>
     {{> footer}} {{> scripts}}

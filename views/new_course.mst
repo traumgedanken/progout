@@ -3,8 +3,7 @@
 
 <head>
     {{> head}}
-    <title>Progout</title>
-    <meta name="description" content="Створення нового курсу" />
+    <title>New course</title>
 </head>
 
 <body>
@@ -13,17 +12,17 @@
         <fieldset>
             <form action="/courses/new" method="post" enctype="multipart/form-data">
                 <!-- Form Name -->
-                <legend>Новий курс</legend>
+                <legend>New course</legend>
                 <!-- Text input -->
                 <div class="form-group">
-                    <label class="col-md-5 control-label" for="name">Назва курсу</label>
+                    <label class="col-md-5 control-label" for="name">Course name:</label>
                     <div class="col-md-4">
-                        <input name="course_name" type="text" placeholder="Введіть назву курсу" class="form-control input-md"
+                        <input name="course_name" type="text" placeholder="Enter course name" class="form-control input-md"
                             required autofocus pattern="[a-zA-Z0-9_]+" minlength="4" maxlength="20" autocomplete="off" />
                     </div>
                 </div>
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-                    Створити
+                    Create
                 </button>
             </form>
         </fieldset>
