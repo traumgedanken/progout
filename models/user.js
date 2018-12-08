@@ -141,6 +141,12 @@ class User {
         }).populate('courses', 'name');
     }
 
+    static async getTgUser(tg_username) {
+        return await UserModel.findOne({
+            'telegram.username': tg_username
+        });
+    }
+
     static async insert(user) {
         return await new UserModel(user).save();
     }

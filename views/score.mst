@@ -17,7 +17,7 @@
             </tr>
             {{#list}}
             <tr {{#current}} class="table-dark" {{/current}}>
-                <td><a href="/users/{{username}}">{{fullname}}</a></td>
+                <td><a href="/users/{{users.username}}">{{user.fullname}}</a></td>
                 <td>{{score}}</td>
             </tr>
             {{/list}}

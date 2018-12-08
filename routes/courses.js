@@ -9,21 +9,17 @@ const User = require('../models/user');
 
 function getUserScore(solutions) {
     return new Promise(resolve => {
-        const users = {};
-        for (let solution of solutions)
-            if (users[solution.user.id]) users[solution.user.id].score += solution.score;
-            else
-                users[solution.user.id] = {
-                    fullname: solution.user.fullname,
-                    username: solution.user.username,
+        const users = [];
+        for (const solution of solutions) {
+            const foo = users.find(x => x.user.username == solution.user.username);
+            if (!foo)
+                users.push({
+                    user: solution.user,
                     score: solution.score
-                };
-        const foo = [];
-        for (const user in users) if (user != 'remove') foo.push(users[user]);
-        foo.sort((a, b) => {
-            return b.score - a.score;
-        });
-        resolve(foo);
+                });
+            else foo.score += solution.score;
+        }
+        resolve(users);
     });
 }
 
