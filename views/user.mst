@@ -14,7 +14,7 @@
   <main role="main" class="container">
     <div class="justify-content-sm-center container row">
       <div class="col-md-6 img">
-        <img src="{{{userToDisplay.avaUrl}}}" alt="ava" class="img-rounded" height=300>
+        <img src="{{{userToDisplay.avaUrl}}}" alt="ava" class="img-rounded ava">
       </div>
       <div class="col-md-6 details" style="margin-top: 20px;">
         <blockquote>

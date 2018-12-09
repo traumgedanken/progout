@@ -36,6 +36,11 @@ body > .container {
     padding-left: 15px;
 }
 
+img.ava {
+    max-width: 300px;
+    max-height: 300px;
+}
+
 code {
     font-size: 80%;
 }
