@@ -10,12 +10,17 @@
   {{> header}}
   <main role="main" class="container">
     <table class="table table-dark">
+      {{^list}}
+      <p class="lead">There is nothing to check yet...</p>
+      {{/list}}
+      {{#list}}
       <tr>
         <th scope="col">Task</th>
         <th scope="col">Student</th>
         <th scope="col">File</th>
         <th scope="col">Score</th>
       </tr>
+      {{/list}}
       {{#list}}
       <tr>
         <td><a href="/tasks/{{task.id_name}}">{{task.name}}</a></td>

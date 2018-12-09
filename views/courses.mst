@@ -12,7 +12,7 @@
   <main role="main" class="container">
     {{#user.teacher}}
     <div class="row" style="margin: 5px;">
-      <input class="btn btn-sm btn-outline-primary" type=button onClick="parent.location='/courses/new'" value='Додати новий курс'>
+      <input class="btn btn-sm btn-outline-primary" type=button onClick="parent.location='/courses/new'" value='Add new course'>
     </div>
     {{/user.teacher}}
 

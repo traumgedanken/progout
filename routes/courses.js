@@ -19,7 +19,11 @@ function getUserScore(solutions) {
                 });
             else foo.score += solution.score;
         }
-        resolve(users);
+        resolve(
+            users.sort((a, b) => {
+                return a.score < b.score;
+            })
+        );
     });
 }
 

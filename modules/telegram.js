@@ -98,7 +98,7 @@ async function tasksCommand() {
     if (!tasks) return 'Empty list';
     let str = 'Tasks list:\n\n';
     for (const task of tasks)
-        str += `[${task.name}](https://progout.herokuapp.com/courses/${task.id_name})\n`;
+        str += `[${task.name}](https://progout.herokuapp.com/tasks/${task.id_name})\n`;
     return str;
 }
 
