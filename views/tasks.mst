@@ -12,8 +12,8 @@
 <body>
   {{> header}}
   <main role="main" class="container">
-    <form class="form-inline mt-2 mt-md-0">
-      <input id="search" autocomplete="off" onkeyup="processInput();" name="taskname" class="form-control mr-sm-2" type="text"
+    <form class="col-md-4">
+      <input id="search" autocomplete="off" onkeyup="processInput();" name="taskname" class="form-control" type="text"
         placeholder="Search for a task by it's name" aria-label="Search">
     </form>
     <div id="loader"></div>

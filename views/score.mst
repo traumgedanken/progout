@@ -11,14 +11,12 @@
   <main role="main" class="container">
     <table class="table table-dark">
       <h2>Scores for <a href="/courses/{{course_name}}"><i>{{course_name}}</i></a></h2>
-      {{^list}}
-      <p class="lead">Nobody has contributed to this course yet...</p>
-      {{/list}}
-      {{#list}}
       <tr>
         <th scope="col">User</th>
         <th scope="col">Score</th>
       </tr>
+      {{^list}}
+      <p class="lead">Nobody has contributed to this course yet...</p>
       {{/list}}
       {{#list}}
       <tr {{#current}} class="table-dark" {{/current}}>
