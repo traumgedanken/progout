@@ -81,35 +81,63 @@ module.exports = rootPath => {
         }
     });
 
-    router.post('/new', auth.checkTeacher(rootPath), async (req, res) => {
-        try {
-            const course = await Course.getByName(req.query.course);
-            if (!course) {
-                await Log.handleError(rootPath, req, res, { code: 404 });
-                return;
-            } else if (req.user.role !== 'admin' && course.author != req.user.id) {
-                await Log.handleError(rootPath, req, res, { code: 403 });
-                return;
-            }
-            req.files.condition.name = req.body.task_id_name + '.md';
-            const url = await cloudinary.uploadFile(
-                req.files.condition,
-                'conditions/' + req.query.course,
-                'raw'
-            );
-            const newTask = new Task(
-                req.body.task_name,
-                req.body.task_id_name,
-                url,
-                req.query.course
-            );
-            await Task.insert(newTask);
-            res.redirect(path.join(rootPath, newTask.id_name));
-        } catch (err) {
-            req.flash('message', 'Назва та ідентифікатор завдання повинні бути унікальними');
-            res.redirect('/error');
+    async function checkCourseAuthority(req, res, next) {
+        const course = await Course.getByName(req.query.course);
+        if (!course) return await Log.handleError(rootPath, req, res, { code: 404 });
+        if (req.user.role !== 'admin' && course.author != req.user.id)
+            return await Log.handleError(rootPath, req, res, { code: 403 });
+        return next();
+    }
+
+    async function checkTaskData(req, res, next) {
+        const name = req.body.task_name;
+        const id_name = req.body.task_id_name;
+        if (
+            !name ||
+            !id_name ||
+            name.length < 4 ||
+            name.length > 20 ||
+            id_name.length < 4 ||
+            id_name.length > 20 ||
+            !/[a-zA-Z0-9_]+/.test(id_name)
+        ) {
+            req.flash('message', 'invalid input');
+            return res.redirect('/error');
         }
-    });
+        const task = await Task.getByName(id_name);
+        if (task && task.id != req.params.id) {
+            req.flash('message', 'Identifier should be unique');
+            return res.redirect('/error');
+        }
+        next();
+    }
+
+    router.post(
+        '/new',
+        auth.checkTeacher(rootPath),
+        checkCourseAuthority,
+        checkTaskData,
+        async (req, res) => {
+            try {
+                req.files.condition.name = req.body.task_id_name + '.md';
+                const url = await cloudinary.uploadFile(
+                    req.files.condition,
+                    'conditions/' + req.query.course,
+                    'raw'
+                );
+                await Task.insert({
+                    name: req.body.task_name,
+                    id_name: req.body.task_id_name,
+                    course: req.query.course,
+                    maxScore: req.body.task_max_score,
+                    condition_url: url
+                });
+                res.redirect(path.join(rootPath, req.body.task_id_name));
+            } catch (err) {
+                await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
+            }
+        }
+    );
 
     router.get('/update/:id_name', auth.checkTeacher(rootPath), async (req, res) => {
         try {
@@ -129,7 +157,7 @@ module.exports = rootPath => {
         }
     });
 
-    router.post('/update/:id', auth.checkTeacher(rootPath), async (req, res) => {
+    router.post('/update/:id', auth.checkTeacher(rootPath), checkTaskData, async (req, res) => {
         try {
             const task = await Task.getByIdAndPopulate(req.params.id);
             if (!task) {
@@ -149,11 +177,9 @@ module.exports = rootPath => {
                 );
             }
             const newTask = new Task(req.body.task_name, req.body.task_id_name, url);
-            await Task.update(req.params.id, newTask);
-            res.redirect(path.join(rootPath, newTask.id_name));
+            res.redirect(path.join(rootPath, (await Task.update(req.params.id, newTask)).id_name));
         } catch (err) {
-            req.flash('message', 'Назва та ідентифікатор завдання повинні бути унікальними');
-            res.redirect('/error');
+            await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
         }
     });
 

@@ -2,43 +2,43 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>Signup</title>
+  {{> head}}
+  <title>Signup</title>
 </head>
 
 <body>
-    {{>header}}
-    <div class="col-md-6 text-center">
-        {{#error}}{{>error_message}}{{/error}}
-        <form class="form-signin" action="/auth/register" method="post" enctype="multipart/form-data">
-            <img class="mb-4" src="https://res.cloudinary.com/progout/image/upload/v1542101203/root/progout-logo.png"
-                alt="" width="72" height="72" />
+  {{>header}}
+  <div class="col-md-6 text-center">
+    {{#error}}{{>error_message}}{{/error}}
+    <form class="form-signin" action="/auth/signup" method="post" enctype="multipart/form-data">
+      <img class="mb-4" src="https://res.cloudinary.com/progout/image/upload/v1542101203/root/progout-logo.png" alt=""
+        width="72" height="72" />
 
-            <input onkeyup="checkUsername()" autocomplete="off" name="username" type="username" id="inputUsername"
-                class="form-control" placeholder="Enter username" required autofocus minlength="4" maxlength="20" />
-            <small id="usernameHelpBlock" class="form-text text-muted"></small>
+      <input onkeyup="checkUsername()" autocomplete="off" name="username" type="username" id="inputUsername" class="form-control"
+        placeholder="Enter username" required autofocus minlength="4" maxlength="20" />
+      <small id="usernameHelpBlock" class="form-text text-muted"></small>
 
-            <input onkeyup="checkFullname()" minlength="4" maxlength="20" autocomplete="off" name="fullname" type="username"
-                id="inputFullname" class="form-control" placeholder="Enter fullname" required />
-            <small id="fullnameHelpBlock" class="form-text text-muted"></small>
+      <input onkeyup="checkFullname()" minlength="4" maxlength="20" autocomplete="off" name="fullname" type="username"
+        id="inputFullname" class="form-control" placeholder="Enter fullname" required />
+      <small id="fullnameHelpBlock" class="form-text text-muted"></small>
 
-            <input onkeyup="validatePassword()" name="password" type="password" id="inputPassword" class="form-control"
-                placeholder="Enter password" required minlength="8" maxlength="20" />
-            <small id="passwordHelpBlock" class="form-text text-muted"></small>
+      <input onkeyup="validatePassword()" name="password" type="password" id="inputPassword" class="form-control"
+        placeholder="Enter password" required minlength="8" maxlength="20" />
+      <small id="passwordHelpBlock" class="form-text text-muted"></small>
 
-            <input onkeyup="validatePasswordEqual()" name="passwordRepeat" type="password" id="inputPasswordRepeat"
-                class="form-control" placeholder="Repeat password" required />
-            <small id="passwordRepeatHelpBlock" class="form-text text-muted"></small>
+      <input onkeyup="validatePasswordEqual()" name="passwordRepeat" type="password" id="inputPasswordRepeat" class="form-control"
+        placeholder="Repeat password" required />
+      <small id="passwordRepeatHelpBlock" class="form-text text-muted"></small>
 
-            <button id="submitBtn" class="btn btn-lg btn-primary btn-block disabled" type="submit">
-                Signup
-            </button>
-        </form>
-        <a href="/auth/login/google"><img src="https://res.cloudinary.com/progout/image/upload/c_scale,w_200/v1544135849/root/google_auth.png"></a>
-        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-    </div>
-    {{> scripts}}
-    <script src='/javascripts/registration.js'></script>
+      <button id="submitBtn" class="btn btn-lg btn-primary btn-block disabled" type="submit">
+        Signup
+      </button>
+    </form>
+    <a href="/auth/login/google"><img src="https://res.cloudinary.com/progout/image/upload/c_scale,w_200/v1544135849/root/google_auth.png"></a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+  </div>
+  {{> scripts}}
+  <script src='/javascripts/registration.js'></script>
 </body>
 
 </html>

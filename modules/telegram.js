@@ -45,11 +45,18 @@ async function checkRegistration(message) {
 
 // /start
 function startCommand() {
-    return 'Hello!';
+    return `***List of commands:***
+
+/score - ___get your scores___
+/courses - ___get list of available courses___
+/tasks - ___get list of available tasks___
+/configure - ___if you don't recieve notification___
+/check - ___try to send me a notification___`;
 }
 
 // /score
 function getAllCourses(solutions) {
+    if (solutions) return 'You have no solutions.';
     const courses = new Map();
     for (const solution of solutions)
         courses.set(solution.course.name, courses.get(solution.course.name) || 0 + solution.score);
@@ -78,6 +85,7 @@ async function configureCommand(message) {
 // /courses
 async function coursesCommand() {
     const courses = await Course.getAll();
+    if (!courses) return 'Empty list';
     let str = 'Courses list:\n\n';
     for (const course of courses)
         str += `[${course.name}](https://progout.herokuapp.com/courses/${course.name})\n`;
@@ -87,10 +95,21 @@ async function coursesCommand() {
 // /tasks
 async function tasksCommand() {
     const tasks = await Task.getAll();
+    if (!tasks) return 'Empty list';
     let str = 'Tasks list:\n\n';
     for (const task of tasks)
         str += `[${task.name}](https://progout.herokuapp.com/courses/${task.id_name})\n`;
     return str;
+}
+
+// /check
+async function checkCommand(message) {
+    const user = await User.getTgUser(message.from.username);
+    if (!user.telegram.chat_id) return;
+    await userBot.sendMessage({
+        chat_id: user.telegram.chat_id,
+        text: 'Success!'
+    });
 }
 
 if (userBot)
@@ -102,6 +121,7 @@ if (userBot)
                 text,
                 parse_mode: 'markdown'
             });
+        else if (message.text === '/check') await checkCommand(message);
     });
 
 module.exports = {

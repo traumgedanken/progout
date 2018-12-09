@@ -2,28 +2,28 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>Вхід</title>
+  {{> head}}
+  <title>Вхід</title>
 </head>
 
 <body>
-    {{>header}}
-    <div class="col-md-6 text-center">
-        {{#error}}{{>error_message}}{{/error}}
-        <form action="/auth/signin" method="post" class="form-signin">
-            <img class="mb-4" src="https://res.cloudinary.com/progout/image/upload/v1542101203/root/progout-logo.png"
-                alt="" width="72" height="72" />
-            <input name="username" type="username" id="inputUsername" class="form-control" placeholder="Enter username"
-                required autofocus />
-            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Enter password"
-                required />
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </p>
-        </form>
-        <a href="/auth/login/google"><img src="https://res.cloudinary.com/progout/image/upload/c_scale,w_200/v1544135849/root/google_auth.png"></a>
-        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-    </div>
-    {{> scripts}}
+  {{>header}}
+  <div class="col-md-6 text-center">
+    {{#error}}{{>error_message}}{{/error}}
+    <form action="/auth/signin" method="post" class="form-signin">
+      <img class="mb-4" src="https://res.cloudinary.com/progout/image/upload/v1542101203/root/progout-logo.png" alt=""
+        width="72" height="72" />
+      <input name="username" type="username" id="inputUsername" class="form-control" placeholder="Enter username"
+        required autofocus />
+      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Enter password"
+        required />
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </p>
+    </form>
+    <a href="/auth/login/google"><img src="https://res.cloudinary.com/progout/image/upload/c_scale,w_200/v1544135849/root/google_auth.png"></a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+  </div>
+  {{> scripts}}
 </body>
 
 </html>

@@ -2,20 +2,20 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>Logs</title>
+  {{> head}}
+  <title>Logs</title>
 </head>
 
 <body>
-    {{> header}}
-    <main role="main" class="container">
-        <div id="loader"></div>
-        <div class="animate-bottom" id="table">Loading...</div>
-        <div id="pagination"></div>
-    </main>
-    {{> footer}} {{> scripts}}
-    <script src="/javascripts/models/logs.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+  {{> header}}
+  <main role="main" class="container">
+    <div id="loader"></div>
+    <div class="animate-bottom" id="table">Loading...</div>
+    <div id="pagination"></div>
+  </main>
+  {{> footer}} {{> scripts}}
+  <script src="/javascripts/models/logs.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
 </body>
 
 </html>

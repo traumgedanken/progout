@@ -2,74 +2,74 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>
-        {{userToDisplay.fullname}}
-    </title>
-    <meta name="description" content="{{userToDisplay.fullname}}: {{userToDisplay.bio}}">
+  {{> head}}
+  <title>
+    {{userToDisplay.fullname}}
+  </title>
+  <meta name="description" content="{{userToDisplay.fullname}}: {{userToDisplay.bio}}">
 </head>
 
 <body>
-    {{> header}}
-    <main role="main" class="container">
-        <div class="justify-content-sm-center container row">
-            <div class="col-md-6 img">
-                <img src="{{{userToDisplay.avaUrl}}}" alt="ava" class="img-rounded" height=300>
-            </div>
-            <div class="col-md-6 details" style="margin-top: 20px;">
-                <blockquote>
-                    <h5>{{userToDisplay.fullname}}</h5>
-                    {{#userToDisplay.teacher}}
-                    <span class="teacher_tag">teacher</span>
-                    {{/userToDisplay.teacher}}
-                    {{#userToDisplay.user}}
-                    <span class="user_tag">user</span>
-                    {{/userToDisplay.user}}
-                    {{#userToDisplay.admin}}
-                    <span class="admin_tag">admin</span>
-                    {{/userToDisplay.admin}}
+  {{> header}}
+  <main role="main" class="container">
+    <div class="justify-content-sm-center container row">
+      <div class="col-md-6 img">
+        <img src="{{{userToDisplay.avaUrl}}}" alt="ava" class="img-rounded" height=300>
+      </div>
+      <div class="col-md-6 details" style="margin-top: 20px;">
+        <blockquote>
+          <h5>{{userToDisplay.fullname}}</h5>
+          {{#userToDisplay.teacher}}
+          <span class="teacher_tag">teacher</span>
+          {{/userToDisplay.teacher}}
+          {{#userToDisplay.user}}
+          <span class="user_tag">user</span>
+          {{/userToDisplay.user}}
+          {{#userToDisplay.admin}}
+          <span class="admin_tag">admin</span>
+          {{/userToDisplay.admin}}
 
-                    <div>
-                        <small><cite title="username">{{userToDisplay.username}}<i class="icon-map-marker"></i></cite></small>
-                    </div>
-                    {{#userToDisplay.telegram.username}}<div>
-                        <small><cite title="telegram"><a target="_blank" href="https://t.me/{{userToDisplay.telegram.username}}">@{{userToDisplay.telegram.username}}</a><i
-                                    class="icon-map-marker"></i></cite></small>
-                    </div>{{/userToDisplay.telegram.username}}
-                    {{#user.admin}}
-                    <form action="/users/changerole/{{userToDisplay.id}}" method="post" enctype="multipart/form-data">
-                        <div>
-                            <input type="radio" id="user" name="role" value="user" {{#userToDisplay.user}} checked{{/userToDisplay.user}}>
-                                <label for="user">User</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="teacher" name="role" value="teacher" {{#userToDisplay.teacher}}
-                                checked{{/userToDisplay.teacher}}> <label for="teacher">Teacher</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="admin" name="role" value="admin" {{#userToDisplay.admin}} checked{{/userToDisplay.admin}}>
-                                <label for="admin">Admin</label>
-                        </div>
-                        <div>
-                            <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Change role</button>
-                        </div>
-                    </form>
-                    {{/user.admin}}
-                </blockquote>
-                {{#userToDisplay.bio}}Про себе:<p>{{userToDisplay.bio}}</p>{{/userToDisplay.bio}}
-                {{#userToDisplay.teacher}}
-                This teacher`s courses:
-                <ul>
-                    {{#userToDisplay.courses}}
-                    <li><a href="/courses/{{name}}"><i>{{name}}</i></a></li>
-                    {{/userToDisplay.courses}}
-                </ul>
-                {{^userToDisplay.courses}}This teacher hasn`t courses yet{{/userToDisplay.courses}}
-                {{/userToDisplay.teacher}}
+          <div>
+            <small><cite title="username">{{userToDisplay.username}}<i class="icon-map-marker"></i></cite></small>
+          </div>
+          {{#userToDisplay.telegram.username}}<div>
+            <small><cite title="telegram"><a target="_blank" href="https://t.me/{{userToDisplay.telegram.username}}">@{{userToDisplay.telegram.username}}</a><i
+                  class="icon-map-marker"></i></cite></small>
+          </div>{{/userToDisplay.telegram.username}}
+          {{#user.admin}}
+          <form action="/users/changerole/{{userToDisplay.id}}" method="post" enctype="multipart/form-data">
+            <div>
+              <input type="radio" id="user" name="role" value="user" {{#userToDisplay.user}} checked{{/userToDisplay.user}}>
+                <label for="user">User</label>
             </div>
-        </div>
-        </div>
-    </main>
-    {{> footer}}
-    {{> scripts}}
+            <div>
+              <input type="radio" id="teacher" name="role" value="teacher" {{#userToDisplay.teacher}} checked{{/userToDisplay.teacher}}>
+                <label for="teacher">Teacher</label>
+            </div>
+            <div>
+              <input type="radio" id="admin" name="role" value="admin" {{#userToDisplay.admin}} checked{{/userToDisplay.admin}}>
+                <label for="admin">Admin</label>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Change role</button>
+            </div>
+          </form>
+          {{/user.admin}}
+        </blockquote>
+        {{#userToDisplay.bio}}Про себе:<p>{{userToDisplay.bio}}</p>{{/userToDisplay.bio}}
+        {{#userToDisplay.teacher}}
+        This teacher`s courses:
+        <ul>
+          {{#userToDisplay.courses}}
+          <li><a href="/courses/{{name}}"><i>{{name}}</i></a></li>
+          {{/userToDisplay.courses}}
+        </ul>
+        {{^userToDisplay.courses}}This teacher hasn`t courses yet{{/userToDisplay.courses}}
+        {{/userToDisplay.teacher}}
+      </div>
+    </div>
+    </div>
+  </main>
+  {{> footer}}
+  {{> scripts}}
 </body>

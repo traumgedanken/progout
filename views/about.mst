@@ -2,14 +2,26 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>About</title>
+  {{> head}}
+  <title>About</title>
 </head>
 
 <body>
-    {{> header}}
-    <main role="main" class="container">lol</main>
-    {{> footer}} {{> scripts}}
+  {{> header}}
+  <main role="main" class="container">
+    <p><strong>Progout</strong> - is a website created for studying tasks sharing. Teachers can share their courses
+      on site and other users are able to get access to tasks of all shared courses, solve it themselves at home
+      ot etc. and upload their solutions. Teacher can have access to all of uploaded solutions and give every of
+      them a mark which will be available for solution`s author.</p>
+    <p>Every registered user can look at common score table inside avery course.</p>
+    <p>Such kind of website can be useful for online-study spreading. Students, solving tasks at home, will form skills
+      of self-discipline and responsibility. A fact that student is not restricted at choise of information source also
+      contributes to improving skill of studying material searching and process big amaout of new data.</p>
+    <p>Because of fact that a ground of Progout`s concept is a responsible approach to solving studying tasks and to
+      process of their evaluation it is possible to say that sharing of such a product in educational environment will
+      have a good influence for a level of academic integrity.</p>
+  </main>
+  {{> footer}} {{> scripts}}
 </body>
 
 </html>

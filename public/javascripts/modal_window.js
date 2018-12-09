@@ -4,7 +4,7 @@ const modal = document.getElementById('myModal');
 
 if (modal !== null) {
     // Get the button that opens the modal
-    const btn = document.getElementById('deleteBtn');
+    const btn = document.getElementById('actionBtn');
 
     // Get the <span> element that closes the modal
     const span = document.getElementsByClassName('close')[0];

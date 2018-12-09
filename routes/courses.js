@@ -74,13 +74,27 @@ module.exports = rootPath => {
         res.render('new_course', data);
     });
 
-    router.post('/new', auth.checkTeacher(rootPath), async (req, res) => {
+    async function checkCourseName(req, res, next) {
+        const name = req.body.course_name;
+        if (!name || name.length < 4 || name.length > 20 || !/[a-zA-Z0-9_]+/.test(name)) {
+            req.flash('message', 'Invalid course name');
+            return res.redirect('/error');
+        }
+        const course = await Course.getByName(name);
+        if (course && course.id == req.params.id) return next();
+        if (course) {
+            req.flash('message', 'Course name is already taken');
+            return res.redirect('/error');
+        }
+        next();
+    }
+
+    router.post('/new', auth.checkTeacher(rootPath), checkCourseName, async (req, res) => {
         try {
             await Course.insert({ name: req.body.course_name, author: req.user.id });
             res.redirect(path.join(rootPath, req.body.course_name));
         } catch (err) {
-            req.flash('message', 'Курс з такою назвою уже існує');
-            res.redirect('/error');
+            await Log.handleError(rootPath, req, res, { code: 500, message: err.message });
         }
     });
 
@@ -137,7 +151,7 @@ module.exports = rootPath => {
         }
     });
 
-    router.post('/update/:id', auth.checkTeacher(rootPath), async (req, res) => {
+    router.post('/update/:id', auth.checkTeacher(rootPath), checkCourseName, async (req, res) => {
         try {
             const course = await Course.getById(req.params.id);
             if (!course) {

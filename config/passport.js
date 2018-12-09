@@ -26,8 +26,18 @@ passport.use(
         async function(req, username, password, done) {
             const password2 = req.body.passwordRepeat;
             const fullname = req.body.fullname;
-            if (password !== password2) {
-                done(null, false, req.flash('message', 'Паролі не співпадають'));
+            if (
+                !password ||
+                !password2 ||
+                !fullname ||
+                password.length < 8 ||
+                password.length > 20 ||
+                password !== password2 ||
+                !/^[іІєЄa-zA-Zа-яА-Я]+(([',. -][іІєЄa-zA-Zа-яА-Я ])?[іІєЄa-zA-Zа-яА-Я]*)*$/.test(
+                    fullname
+                )
+            ) {
+                done(null, false, req.flash('message', 'Ivalid input'));
                 return;
             }
             try {
@@ -36,7 +46,7 @@ passport.use(
                 done(null, insertedUser);
             } catch (err) {
                 console.log(err.toString());
-                done(null, false, req.flash('message', 'Користувач з таким логіном уже існує'));
+                done(null, false, req.flash('message', 'Username is already taken'));
             }
         }
     )
@@ -50,13 +60,15 @@ passport.use(
         },
         async function(req, username, password, done) {
             const user = await User.getByUsername(username);
-            if (!user) {
-                done(null, false, req.flash('message', 'Користувача з таким логіном не знайдено'));
-                return;
-            }
+            if (!user)
+                return done(
+                    null,
+                    false,
+                    req.flash('message', 'There is no user with such username')
+                );
             const validPassword = await User.validatePassword(user, password);
             if (validPassword) done(null, user);
-            else done(null, false, req.flash('message', 'Невірний пароль'));
+            else done(null, false, req.flash('message', 'Invalid password'));
         }
     )
 );
@@ -72,8 +84,6 @@ passport.use(
     })
 );
 
-const fs = require('fs');
-
 passport.use(
     'google',
     new GoogleStrategy(
@@ -83,10 +93,8 @@ passport.use(
             callbackURL: process.env.GOOGLE_API_CALLBACK_URL
         },
         async (accessToken, refreshToken, profile, done) => {
-            fs.writeFileSync(__dirname + '/me.json', JSON.stringify(profile, null, 4), 'utf8');
             const user =
                 (await User.getByOpenId(profile.id)) || (await User.createGoogleUser(profile));
-
             return done(null, user);
         }
     )

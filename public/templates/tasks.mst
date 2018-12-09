@@ -1,26 +1,26 @@
 {{^pages}}
 <p class="lead">
-    На жаль ми нічого не знайшли{{#request}} по запиту <i>{{ request }}</i>{{/request}}
+  We have found nothing{{#request}} for request <i>{{ request }}</i>{{/request}}
 </p>
 {{/pages}}
 
 {{#pages}}
 <table class="table table-dark">
-    <tr>
-        <th scope="col">Назва</th>
-    </tr>
-    {{#list}}
-    <tr>
-        <td>
-            <a href="/tasks/{{id_name}}"><u>{{ id_name }}</u></a>
-            -
-            <i>{{ name }}
-                <div class="what">
-                    <a href="/courses/{{course.name}}">{{ course.name }}</a>
-                </div></i>
-        </td>
-    </tr>
-    {{/list}}
+  <tr>
+    <th scope="col">Name</th>
+  </tr>
+  {{#list}}
+  <tr>
+    <td>
+      <a href="/tasks/{{id_name}}"><u>{{ id_name }}</u></a>
+      -
+      <i>{{ name }}
+        <div class="what">
+          <a href="/courses/{{course.name}}">{{ course.name }}</a>
+        </div></i>
+    </td>
+  </tr>
+  {{/list}}
 </table>
 
 {{/pages}}

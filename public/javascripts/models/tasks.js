@@ -2,6 +2,7 @@ const searchEl = document.getElementById('search');
 const loaderEl = document.getElementById('loader');
 const paginationEl = document.getElementById('pagination');
 const tableEl = document.getElementById('table');
+const resultsEl = document.getElementById('results_number');
 
 async function fetchData(page) {
     let url = '/api/v1/tasks?';
@@ -11,7 +12,12 @@ async function fetchData(page) {
     if (search) url += `search=${search}&`;
 
     if (localStorage.courseId != 'null') url += `course=${localStorage.courseId}`;
-    return JSON.parse(await (await fetch(url)).text());
+    const result = JSON.parse(await (await fetch(url)).text());
+
+    if (resultsEl)
+        resultsEl.innerHTML = !search || !result.count ? '' : `Number of results: ${result.count}`;
+
+    return result;
 }
 
 async function renderPagination(count) {

@@ -2,260 +2,269 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>Progout API</title>
+  {{> head}}
+  <title>Progout API</title>
 </head>
 
 <body>
-    {{> header}}
-    <main role="main" class="container col-md-8">
-        <h2 style="margin-bottom: 50px;">Progout REST JSON API Documentation</h2>
+  {{> header}}
+  <main role="main" class="container col-md-8">
+    <h2 style="margin-bottom: 50px;">Progout REST JSON API Documentation</h2>
 
-        <h3>Requests</h3>
-        <p>
-            You are able to make GET, POST, PUT and DELETE requests to get, create new, update
-            and delete entity. Each request should start with <code>/{entities}</code> i.e. with
-            the name of entity in plural.
-        </p>
+    <h3>Requests</h3>
+    <p>
+      You are able to make GET, POST, PUT and DELETE requests to get, create new, update
+      and delete entity. Each request should start with <code>/{entities}</code> i.e. with
+      the name of entity in plural.
+    </p>
 
-        <h3>Errors</h3>
-        <p>
-            If some error occured returns JSON-object with field <code>message</code> with
-            information about error in it
-        </p>
+    <h3>Errors</h3>
+    <p>
+      If some error occured returns JSON-object with field <code>message</code> with
+      information about error in it
+    </p>
 
-        <h3>Users</h3>
-        <table class="table table-dark">
-            <tr>
-                <th scope="col">Method</th>
-                <th scope="col">/url</th>
-                <th scope="col">Availiable for</th>
-                <th scope="col">Returns</th>
-                <th scope="col">Query</th>
-            </tr>
-            <tbody>
-                <tr>
-                    <td>GET</td>
-                    <td>/users</td>
-                    <td>Admin</td>
-                    <td>List of all users</td>
-                    <td>
-                        <p>page - number of page to be displayed (default = 1),</p>
-                        <p>
-                            offset - number of users to be displayed on one page (default = 5)
-                        </p>
-                        <p>role, isDisabled - for filtering</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>GET</td>
-                    <td>/users/:id</td>
-                    <td>Admin</td>
-                    <td>User with specified id (if not found returns message avout it)</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>DELETE</td>
-                    <td>/users/:id</td>
-                    <td>Admin</td>
-                    <td>
-                        Return deleted user with specified id (if not found returns message
-                        avout it)
-                    </td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>PUT</td>
-                    <td>/users/:id</td>
-                    <td>Admin</td>
-                    <td>
-                        Return updated user with specified id (if not found returns message
-                        about it)
-                    </td>
-                    <td>
-                        role, avaUrl, isDisabled, fullname, password - fields to be updated, no
-                        one is obligatory
-                    </td>
-                </tr>
-                <tr>
-                    <td>GET</td>
-                    <td>/users/me</td>
-                    <td>
-                        <p>User</p>
-                        <p>Teacher</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>Currently logged user information</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
+    <h3>Users</h3>
+    <table class="table table-dark">
+      <tr>
+        <th scope="col">Method</th>
+        <th scope="col">/url</th>
+        <th scope="col">Availiable for</th>
+        <th scope="col">Returns</th>
+        <th scope="col">Params</th>
+      </tr>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td>/users</td>
+          <td>Admin</td>
+          <td>List of all users</td>
+          <td>
+            Query:
+            <p>page - number of page to be displayed (default = 1),</p>
+            <p>
+              offset - number of users to be displayed on one page (default = 5)
+            </p>
+            <p>role, isDisabled - for filtering</p>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/users/:id</td>
+          <td>Admin</td>
+          <td>User with specified id (if not found returns message avout it)</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>DELETE</td>
+          <td>/users/:id</td>
+          <td>Admin</td>
+          <td>
+            Return deleted user with specified id (if not found returns message
+            avout it)
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>PUT</td>
+          <td>/users/:id</td>
+          <td>Admin</td>
+          <td>
+            Return updated user with specified id (if not found returns message
+            about it)
+          </td>
+          <td>
+            In body:
+            role, avaUrl, isDisabled, fullname, password - fields to be updated, no
+            one is obligatory
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/users/me</td>
+          <td>
+            <p>User</p>
+            <p>Teacher</p>
+            <p>Admin</p>
+          </td>
+          <td>Currently logged user information</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
 
-        <h3>Courses</h3>
-        <table class="table table-dark">
-            <tr>
-                <th scope="col">Method</th>
-                <th scope="col">/url</th>
-                <th scope="col">Availiable for</th>
-                <th scope="col">Returns</th>
-                <th scope="col">Query</th>
-            </tr>
-            <tbody>
-                <tr>
-                    <td>GET</td>
-                    <td>/courses</td>
-                    <td>
-                        <p>User</p>
-                        <p>Teacher</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>List of all courses</td>
-                    <td>
-                        <p>page - number of page to be displayed (default = 1),</p>
-                        <p>
-                            offset - number of courses to be displayed on one page (default = 5)
-                        </p>
-                        <p>author - for filtering</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>GET</td>
-                    <td>/courses/:id</td>
-                    <td>
-                        <p>User</p>
-                        <p>Teacher</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>Course with specified id (if not found returns message avout it)</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>DELETE</td>
-                    <td>/courses/:id</td>
-                    <td>
-                        <p>Teacher (author)</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>
-                        Return deleted course with specified id (if not found returns message
-                        avout it)
-                    </td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>PUT</td>
-                    <td>/courses/:id</td>
-                    <td>
-                        <p>Teacher (author)</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>
-                        Return updated course with specified id (if not found returns message
-                        about it)
-                    </td>
-                    <td>name - fields to be updated, no one is obligatory</td>
-                </tr>
-                <tr>
-                    <td>POST</td>
-                    <td>/courses</td>
-                    <td>
-                        <p>Teacher</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>Return new course (if not created returns message about it)</td>
-                    <td>
-                        <p>name - is obligatory</p>
-                        <p>return error if some obligatory parameters were ommited</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <h3>Courses</h3>
+    <table class="table table-dark">
+      <tr>
+        <th scope="col">Method</th>
+        <th scope="col">/url</th>
+        <th scope="col">Availiable for</th>
+        <th scope="col">Returns</th>
+        <th scope="col">Params</th>
+      </tr>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td>/courses</td>
+          <td>
+            <p>User</p>
+            <p>Teacher</p>
+            <p>Admin</p>
+          </td>
+          <td>List of all courses</td>
+          <td>
+            Query:
+            <p>page - number of page to be displayed (default = 1),</p>
+            <p>
+              offset - number of courses to be displayed on one page (default = 5)
+            </p>
+            <p>author - for filtering</p>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/courses/:id</td>
+          <td>
+            <p>User</p>
+            <p>Teacher</p>
+            <p>Admin</p>
+          </td>
+          <td>Course with specified id (if not found returns message avout it)</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>DELETE</td>
+          <td>/courses/:id</td>
+          <td>
+            <p>Teacher (author)</p>
+            <p>Admin</p>
+          </td>
+          <td>
+            Return deleted course with specified id (if not found returns message
+            avout it)
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>PUT</td>
+          <td>/courses/:id</td>
+          <td>
+            <p>Teacher (author)</p>
+            <p>Admin</p>
+          </td>
+          <td>
+            Return updated course with specified id (if not found returns message
+            about it)
+          </td>
+          <td>In body:
+            <p>name - fields to be updated, no one is obligatory</p>
+          </td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>/courses</td>
+          <td>
+            <p>Teacher</p>
+            <p>Admin</p>
+          </td>
+          <td>Return new course (if not created returns message about it)</td>
+          <td>
+            In body:
+            <p>name - is obligatory</p>
+            <p>return error if some obligatory parameters were ommited</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-        <h3>Tasks</h3>
-        <table class="table table-dark">
-            <tr>
-                <th scope="col">Method</th>
-                <th scope="col">/url</th>
-                <th scope="col">Availiable for</th>
-                <th scope="col">Returns</th>
-                <th scope="col">Query</th>
-            </tr>
-            <tbody>
-                <tr>
-                    <td>GET</td>
-                    <td>/tasks</td>
-                    <td>
-                        <p>User</p>
-                        <p>Teacher</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>List of all tasks</td>
-                    <td>
-                        <p>page - number of page to be displayed (default = 1),</p>
-                        <p>
-                            offset - number of tasks to be displayed on one page (default = 5)
-                        </p>
-                        <p>course - for filtering</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>GET</td>
-                    <td>/tasks/:id</td>
-                    <td>
-                        <p>User</p>
-                        <p>Teacher</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>Task with specified id (if not found returns message avout it)</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>DELETE</td>
-                    <td>/tasks/:id</td>
-                    <td>
-                        <p>Teacher (author)</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>
-                        Return deleted task with specified id (if not found returns message
-                        avout it)
-                    </td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>PUT</td>
-                    <td>/tasks/:id</td>
-                    <td>
-                        <p>Teacher (author)</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>
-                        Return updated task with specified id (if not found returns message
-                        about it)
-                    </td>
-                    <td>
-                        name, id_name, condition_url - fields to be updated, no one is
-                        obligatory
-                    </td>
-                </tr>
-                <tr>
-                    <td>POST</td>
-                    <td>/tasks</td>
-                    <td>
-                        <p>Teacher</p>
-                        <p>Admin</p>
-                    </td>
-                    <td>Return new task (if not created returns message about it)</td>
-                    <td>
-                        <p>name, id_name, condition_url, course - are obligatory</p>
-                        <p>return error if some obligatory parameters were ommited</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </main>
+    <h3>Tasks</h3>
+    <table class="table table-dark">
+      <tr>
+        <th scope="col">Method</th>
+        <th scope="col">/url</th>
+        <th scope="col">Availiable for</th>
+        <th scope="col">Returns</th>
+        <th scope="col">Params</th>
+      </tr>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td>/tasks</td>
+          <td>
+            <p>User</p>
+            <p>Teacher</p>
+            <p>Admin</p>
+          </td>
+          <td>List of all tasks</td>
+          <td>
+            Query:
+            <p>page - number of page to be displayed (default = 1),</p>
+            <p>
+              offset - number of tasks to be displayed on one page (default = 5)
+            </p>
+            <p>course - for filtering</p>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/tasks/:id</td>
+          <td>
+            <p>User</p>
+            <p>Teacher</p>
+            <p>Admin</p>
+          </td>
+          <td>Task with specified id (if not found returns message avout it)</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>DELETE</td>
+          <td>/tasks/:id</td>
+          <td>
+            <p>Teacher (author)</p>
+            <p>Admin</p>
+          </td>
+          <td>
+            Return deleted task with specified id (if not found returns message
+            avout it)
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>PUT</td>
+          <td>/tasks/:id</td>
+          <td>
+            <p>Teacher (author)</p>
+            <p>Admin</p>
+          </td>
+          <td>
+            Return updated task with specified id (if not found returns message
+            about it)
+          </td>
+          <td>
+            In body:
+            <p>name, id_name, condition_url - fields to be updated, no one is
+              obligatory</p>
+          </td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>/tasks</td>
+          <td>
+            <p>Teacher</p>
+            <p>Admin</p>
+          </td>
+          <td>Return new task (if not created returns message about it)</td>
+          <td>
+            In body:
+            <p>name, id_name, condition_url, course - are obligatory</p>
+            <p>return error if some obligatory parameters were ommited</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
 
-    {{> footer}} {{> scripts}}
+  {{> footer}} {{> scripts}}
 </body>
 
 </html>

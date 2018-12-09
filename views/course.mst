@@ -2,59 +2,59 @@
 <html lang="en">
 
 <head>
-	{{> head}}
-	<title>{{course.name}}</title>
-	<meta name="description" content="Course: {{course.name}}">
+  {{> head}}
+  <title>{{course.name}}</title>
+  <meta name="description" content="Course: {{course.name}}">
 </head>
 
 <body>
-	{{> header}}
-	<main role="main" class="container">
-		<h2 id="courseName">{{course.name}}</h2>
-		<p id="courseId" hidden>{{course.id}}</p>
-		<div class="form-inline"><input class="btn btn-sm btn-outline-primary" type=button onClick="parent.location='/courses/{{course.name}}/score'"
-			 value='All scores'></div>
-		{{#user.isAuthor}}<div class="form-inline">
-			<input class="btn btn-sm btn-outline-primary" type=button onClick="parent.location='/tasks/new?course={{course.name}}'"
-			 value='Add new task'>
-			<input class="btn btn-sm btn-outline-success" type=button onClick="parent.location='/courses/update/{{course.name}}'"
-			 value='Edit course'>
-			<input class="btn btn-sm btn-outline-success" type=button onClick="parent.location='/courses/{{course.name}}/check'"
-			 value='Check solutions'>
-			<button class="btn btn-sm btn-outline-danger" id="deleteBtn">
-				Delete course
-			</button>
-		</div>{{/user.isAuthor}}
+  {{> header}}
+  <main role="main" class="container">
+    <h2 id="courseName">{{course.name}}</h2>
+    <p id="courseId" hidden>{{course.id}}</p>
+    <div class="form-inline"><input class="btn btn-sm btn-outline-primary" type=button onClick="parent.location='/courses/{{course.name}}/score'"
+        value='All scores'></div>
+    {{#user.isAuthor}}<div class="form-inline">
+      <input class="btn btn-sm btn-outline-primary" type=button onClick="parent.location='/tasks/new?course={{course.name}}'"
+        value='Add new task'>
+      <input class="btn btn-sm btn-outline-success" type=button onClick="parent.location='/courses/update/{{course.name}}'"
+        value='Edit course'>
+      <input class="btn btn-sm btn-outline-success" type=button onClick="parent.location='/courses/{{course.name}}/check'"
+        value='Check solutions'>
+      <button class="btn btn-sm btn-outline-danger" id="actionBtn">
+        Delete course
+      </button>
+    </div>{{/user.isAuthor}}
 
-		<div id="loader"></div>
-		<div id="table">Loading...</div>
-		<div id="pagination"></div>
+    <div id="loader"></div>
+    <div id="table">Loading...</div>
+    <div id="pagination"></div>
 
-		<div class="modal" id="myModal" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Warning</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p>Are you sure to delete course? It can't be undone.</p>
-					</div>
-					<div class="modal-footer">
-						<form action="/courses/delete/{{course.id}}" method="post">
-							<button type="submit" class="btn btn-danger">Delete</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
-	{{> footer}}
-	{{> scripts}}
-	<script src='/javascripts/models/tasks.js'></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
-	<script src="/javascripts/modal_window.js"></script>
-	</div>
+    <div class="modal" id="myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog animate-bottom" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Warning</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure to delete course? It can't be undone.</p>
+          </div>
+          <div class="modal-footer">
+            <form action="/courses/delete/{{course.id}}" method="post">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  {{> footer}}
+  {{> scripts}}
+  <script src='/javascripts/models/tasks.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+  <script src="/javascripts/modal_window.js"></script>
+  </div>
 </body>

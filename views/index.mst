@@ -2,45 +2,53 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>Progout</title>
+  {{> head}}
+  <title>Progout</title>
 </head>
 
 <body>
-    {{> header}}
-    <main role="main" class="container">
-        <p>
-            <strong>Програмування</strong>&nbsp;&mdash; процес проектування, написання,
-            тестування,&nbsp;<a class="mw-redirect" title="Зневадження" href="https://uk.wikipedia.org/wiki/%D0%97%D0%BD%D0%B5%D0%B2%D0%B0%D0%B4%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F">зневадження</a>&nbsp;і
-            підтримки комп'ютерних&nbsp;<a class="mw-disambig" title="Програма" href="https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%B0">програм</a>.
-            Програмування поєднує в собі елементи&nbsp;<a title="Інженерія" href="https://uk.wikipedia.org/wiki/%D0%86%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D1%96%D1%8F">інженерії</a>&nbsp;(існує
-            навіть відповідна спеціальна галузь інженерії&nbsp;&mdash;&nbsp;<a title="Програмна інженерія" href="https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BD%D0%B0_%D1%96%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D1%96%D1%8F">програмна
-                інженерія</a>,&nbsp;<a title="Англійська мова" href="https://uk.wikipedia.org/wiki/%D0%90%D0%BD%D0%B3%D0%BB%D1%96%D0%B9%D1%81%D1%8C%D0%BA%D0%B0_%D0%BC%D0%BE%D0%B2%D0%B0">англ.</a>&nbsp;<em><span
-                    lang="en">software engineering</span></em>), фундаментальних&nbsp;<a title="Наука" href="https://uk.wikipedia.org/wiki/%D0%9D%D0%B0%D1%83%D0%BA%D0%B0">наук</a>&nbsp;(перш
-            за все&nbsp;<a title="Математика" href="https://uk.wikipedia.org/wiki/%D0%9C%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0">математики</a>)
-            і&nbsp;<a title="Мистецтво" href="https://uk.wikipedia.org/wiki/%D0%9C%D0%B8%D1%81%D1%82%D0%B5%D1%86%D1%82%D0%B2%D0%BE">мистецтва</a><sup
-                id="cite_ref-1" class="reference"></sup>.
-        </p>
-        <p>
-            У вужчому значенні програмування розглядається як кодування&nbsp;&mdash; реалізація
-            у вигляді програми одного чи кількох взаємопов'язаних&nbsp;<a title="Алгоритм" href="https://uk.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC">алгоритмів</a>&nbsp;(у
-            сучасних умовах це здійснюється з застосуванням&nbsp;<a title="Мова програмування" href="https://uk.wikipedia.org/wiki/%D0%9C%D0%BE%D0%B2%D0%B0_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F">мов
-                програмування</a>). У ширшому сенсі процес програмування охоплює і створення, тобто
-            розробку,&nbsp;<a title="Алгоритм" href="https://uk.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC">алгоритмів</a>,
-            і аналіз потреб майбутніх користувачів&nbsp;<a title="Програмне забезпечення" href="https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BD%D0%B5_%D0%B7%D0%B0%D0%B1%D0%B5%D0%B7%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%BD%D1%8F">програмного
-                забезпечення</a>.
-        </p>
-        <p>
-            У широкому значенні програмування використовується у значенні створення програми дій
-            або&nbsp;<a title="Алгоритм" href="https://uk.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC">алгоритмів</a>&nbsp;та
-            навчання людей або пристроїв діяти за&nbsp;<a title="Алгоритм" href="https://uk.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC">алгоритмами</a>.
-        </p>
-        <a href="https://en.wikipedia.org/wiki/Computer_programming">Джерело</a>
-        <p>Програмування - це весело!</p>
-        <p>&nbsp;</p>
-    </main>
+  {{> header}}
+  <main role="main" class="container">
+    <main role="main">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container text-dark">
+          <div class="row">
+            <img src="https://res.cloudinary.com/progout/image/upload/c_scale,w_100/v1542101203/root/progout-logo.png">
+            <h1 class="display-3">Progout</h1>
+          </div>
+          <p></p>
+          <p class="dark">This is a site created for task sharing.</p>
+          <p><a class="btn btn-primary" href="/about" role="button">Learn more &raquo;</a></p>
+        </div>
+      </div>
 
-    {{> footer}} {{> scripts}}
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Courses</h2>
+            <p>As a user you are able to consume a lot of knowledge from courses provided by our teachers</p>
+            <p>If you want to join Progout Teachers Community you can became a teacher and start creating you own
+              courses.</p>
+            {{#user}}<p><a class="btn btn-secondary" href="/courses" role="button">All courses &raquo;</a></p>{{/user}}
+          </div>
+          <div class="col-md-6">
+            <h2>Tasks</h2>
+            <p>You can send you solution and course`s author will check it and give you feedback.</p>
+            <p>As soon as your solution is checked you will recieve an= botification.</p>
+            {{#user}}<p><a class="btn btn-secondary" href="/tasks" role="button">All tasks &raquo;</a></p>{{/user}}
+          </div>
+        </div>
+
+        <hr>
+
+      </div> <!-- /container -->
+
+    </main>
+  </main>
+
+  {{> footer}} {{> scripts}}
 </body>
 
 </html>

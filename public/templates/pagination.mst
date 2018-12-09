@@ -1,24 +1,10 @@
 {{#pages}}
 <nav aria-label="...">
-    <button
-        onclick="goToPrevPage();"
-        class="btn btn-sm btn-{{#prevPage}}primary"{{/prevPage}}
-        {{^prevPage}}secondary"
-        disabled{{/prevPage}}
-        id="prevPageBtn"
-    >
-        <
-    </button>
-    {{ currentPage }} / {{ pages }}
-    <button
-        onclick="goToNextPage();"
-        class="btn btn-sm btn-{{#nextPage}}primary"{{/nextPage}}
-        {{^nextPage}}secondary"
-        disabled{{/nextPage}}
-        id="nextPageBtn"
-    >
-        >
-    </button>
+  <button onclick="goToPrevPage();" class="btn btn-sm btn-{{#prevPage}}primary" {{/prevPage}} {{^prevPage}} secondary"
+    disabled{{/prevPage}} id="prevPageBtn">
+    < </button> {{ currentPage }} / {{ pages }} <button onclick="goToNextPage();" class="btn btn-sm btn-{{#nextPage}}primary"
+      {{/nextPage}} {{^nextPage}} secondary" disabled{{/nextPage}} id="nextPageBtn">
+      >
+  </button>
 </nav>
 {{/pages}}
-

@@ -4,19 +4,19 @@
 
 {{#pages}}
 <table class="table table-dark">
+  <tr>
+    <th scope="col">Fullname</th>
+    <th scope="col">Username</th>
+  </tr>
+  <tbody>
+    {{#list}}
     <tr>
-        <th scope="col">Ім'я</th>
-        <th scope="col">Логін</th>
+      <td>
+        <a alt="fullname" href="../users/{{username}}"><u>{{ fullname }}</u></a>
+      </td>
+      <td alt="username">{{ username }}</td>
     </tr>
-    <tbody>
-        {{#list}}
-        <tr>
-            <td>
-                <a alt="fullname" href="../users/{{username}}"><u>{{ fullname }}</u></a>
-            </td>
-            <td alt="username">{{ username }}</td>
-        </tr>
-        {{/list}}
-    </tbody>
+    {{/list}}
+  </tbody>
 </table>
 {{/pages}}

@@ -1,4 +1,4 @@
 <p class="lead">
-    {{#error.code}}Error {{error.code}}{{/error.code}}
-    {{#error.message}}{{error.message}}{{/error.message}}
+  {{#error.code}}Error {{error.code}}{{/error.code}}
+  {{#error.message}}{{error.message}}{{/error.message}}
 </p>

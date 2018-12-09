@@ -2,41 +2,41 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>
-        Оновлення
-        {{ course.name }}
-    </title>
-    <meta name="description" content="Edit course [{{course.name}}]" />
+  {{> head}}
+  <title>
+    Оновлення
+    {{ course.name }}
+  </title>
+  <meta name="description" content="Edit course [{{course.name}}]" />
 </head>
 
 <body>
-    {{> header}}
-    <main role="main" class="container">
-        <fieldset>
-            <form action="/courses/update/{{course.id}}" method="post" enctype="multipart/form-data">
-                <!-- Form Name -->
-                <legend>
-                    <p class="lead">
-                        Editing course <b>{{ course.name }}</b>
-                    </p>
-                </legend>
-                <!-- Text input -->
-                <div class="form-group">
-                    <label class="col-md-5 control-label" for="name">Course name</label>
-                    <div class="col-md-4">
-                        <input value="{{course.name}}" name="course_name" type="text" placeholder="Enter new course name"
-                            class="form-control input-md" required autofocus pattern="[a-zA-Z0-9_]+" />
-                    </div>
-                </div>
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-                    Edit
-                </button>
-            </form>
-        </fieldset>
-    </main>
+  {{> header}}
+  <main role="main" class="container">
+    <fieldset>
+      <form action="/courses/update/{{course.id}}" method="post" enctype="multipart/form-data">
+        <!-- Form Name -->
+        <legend>
+          <p class="lead">
+            Editing course <b>{{ course.name }}</b>
+          </p>
+        </legend>
+        <!-- Text input -->
+        <div class="form-group">
+          <label class="col-md-5 control-label" for="name">Course name</label>
+          <div class="col-md-4">
+            <input value="{{course.name}}" name="course_name" type="text" placeholder="Enter new course name" class="form-control input-md"
+              required autofocus pattern="[a-zA-Z0-9_]+" />
+          </div>
+        </div>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+          Edit
+        </button>
+      </form>
+    </fieldset>
+  </main>
 
-    {{> footer}} {{> scripts}}
+  {{> footer}} {{> scripts}}
 </body>
 
 </html>

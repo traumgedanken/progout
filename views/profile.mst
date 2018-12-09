@@ -2,56 +2,80 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>My profile</title>
-    <meta name="description" content="{{userToDisplay.fullname}}: {{userToDisplay.bio}}" />
+  {{> head}}
+  <title>My profile</title>
+  <meta name="description" content="{{userToDisplay.fullname}}: {{userToDisplay.bio}}" />
 </head>
 
 <body>
-    {{> header}}
-    <main role="main" class="container">
-        <form action="/users/update/{{user.id}}" method="post" enctype="multipart/form-data">
-            <!-- Form Name -->
-            <legend>Edit <a href="/users/{{user.username}}">profile</a></legend>
+  {{> header}}
+  <main role="main" class="container">
+    <div>
+      <!-- Form Name -->
+      <legend>Edit <a href="/users/{{user.username}}">profile</a></legend>
 
-            <!-- Text input -->
-            <div class="form-group">
-                <label class="col-md-5 control-label" for="fullname">Fullname:</label>
-                <div class="col-md-4">
-                    <input autocomplete="off" minlength="4" maxlength="20" name="fullname" value="{{user.fullname}}"
-                        type="text" placeholder="Enter your fullname" class="form-control input-md" pattern="^[іІєЄa-zA-Zа-яА-Я]+(([',. -][іІєЄa-zA-Zа-яА-Я ])?[іІєЄa-zA-Zа-яА-Я]*)*$" />
-                </div>
-            </div>
+      <!-- Text input -->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="fullname">Fullname:</label>
+        <div class="col-md-4">
+          <input form="myform" autocomplete="off" minlength="4" maxlength="20" name="fullname" value="{{user.fullname}}"
+            type="text" placeholder="Enter your fullname" class="form-control input-md" pattern="^[іІєЄa-zA-Zа-яА-Я]+(([',. -][іІєЄa-zA-Zа-яА-Я ])?[іІєЄa-zA-Zа-яА-Я]*)*$" />
+        </div>
+      </div>
 
-            <!-- Text input -->
-            <div class="form-group">
-                <div class="col-md-4">
-                    <label class="control-label" for="telegramUsername">Telegram-username: <abbr title="To recieve notification via @progout_bot send bot any message after changing this field">?</abbr>
-                    </label>
-                    <input autocomplete="off" pattern="[a-zA-Z0-9_]+" name="telegramUsername"
-                        {{#user.telegram.username}} value={{ user.telegram.username
+      <!-- Text input -->
+      <div class="form-group">
+        <div class="col-md-4">
+          <label class="control-label" for="telegramUsername">Telegram-username: <abbr title="To recieve notification via @progout_bot send bot any message after changing this field">?</abbr>
+          </label>
+          <input form="myform" autocomplete="off" pattern="[a-zA-Z0-9_]+" name="telegramUsername"
+            {{#user.telegram.username}} value={{ user.telegram.username
                         }}
-                        {{/user.telegram.username}} type="text" placeholder="Leave empty if you want" class="form-control input-md" />
-                </div>
-            </div>
+            {{/user.telegram.username}} type="text" placeholder="Leave empty if you want" class="form-control input-md" />
+        </div>
+      </div>
 
-            <!-- Text input -->
-            <div class="form-group">
-                <label class="col-md-5 control-label" for="bio">Bio:</label>
-                <div class="col-md-4">
-                    <input autocomplete="off" maxlength="200" {{#user.bio}} value="{{user.bio}}" {{/user.bio}} name="bio"
-                        type="text" placeholder="Few words about yourself" class="form-control input-md" />
-                </div>
-            </div>
+      <!-- Text input -->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="bio">Bio:</label>
+        <div class="col-md-4">
+          <input form="myform" autocomplete="off" maxlength="200" {{#user.bio}} value="{{user.bio}}" {{/user.bio}} name="bio"
+            type="text" placeholder="Few words about yourself" class="form-control input-md" />
+        </div>
+      </div>
 
-            <div class="col-md-4 form-group files color">
-                <label>Profile pic:</label>
-                <input type="file" accept=".jpg, .png, .jpeg" name="ava" class="form-control-file" />
-            </div>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Save</button>
-        </form>
-    </main>
-    {{> footer}} {{> scripts}}
+      <div class="col-md-4 form-group files color">
+        <label>Profile pic:</label>
+        <input form="myform" type="file" accept=".jpg, .png, .jpeg" name="ava" class="form-control-file" />
+      </div>
+      <button class="btn btn-outline-success btn-sm" id="actionBtn">
+        Update
+      </button>
+    </div>
+
+    <div class="modal" id="myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog animate-bottom" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Warning</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure to update your profile?</p>
+          </div>
+          <div class="modal-footer">
+            <form id="myform" action="/users/update/{{user.id}}" method="post" enctype="multipart/form-data">
+              <button class="btn btn-outline-success" type="submit">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  {{> footer}} {{> scripts}}
+  <script src="/javascripts/modal_window.js"></script>
 </body>
 
 </html>

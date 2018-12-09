@@ -2,73 +2,74 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    {{> syntax_highlight}}
-    <title>{{ task.name }}</title>
+  {{> head}}
+  {{> syntax_highlight}}
+  <title>{{ task.name }}</title>
 </head>
 
 <body>
-    {{> header}}
-    <main role="main" class="container">
-        <h1 title="Task name">{{ task.name }}</h1>
-        {{#user.isAuthor}}
-        <div class="form-inline">
-            <input class="btn btn-sm btn-outline-success" type="button" onClick="parent.location='/tasks/update/{{task.id_name}}'"
-                value="Edit" />
-            <button class="btn btn-sm btn-outline-danger" id="deleteBtn">
-                Delete
+  {{> header}}
+  <main role="main" class="container">
+    <h1 title="Task name">{{ task.name }}</h1>
+    {{#user.isAuthor}}
+    <div class="form-inline">
+      <input class="btn btn-sm btn-outline-success" type="button" onClick="parent.location='/tasks/update/{{task.id_name}}'"
+        value="Edit" />
+      <button class="btn btn-sm btn-outline-danger" id="actionBtn">
+        Delete
+      </button>
+    </div>
+    {{/user.isAuthor}}
+
+    {{#user.user}}
+    <div class='small'>
+      {{#solutionUrl}}<p>Your score: <a href="{{{solutionUrl}}}">{{score}}</a> / {{maxScore}}</p>{{/solutionUrl}}
+      {{^solutionUrl}}<p>Your score: {{score}} / {{maxScore}}</p>{{/solutionUrl}}
+      <form class="form-inline" method="post" action="/tasks/{{task.id}}/loadSolution" enctype="multipart/form-data">
+        <input type="text" value="{{task.course.id}}" name="course_id" hidden>
+        <input type="text" value="{{task.id_name}}" name="task_id_name" hidden>
+        <input required type="file" name="solution" class="form-control" />
+        <button type="submit" class="btn btn-primary btn-sm">Load solution</button>
+      </form>
+    </div>
+    {{/user.user}}
+
+    <p class="small">Max score: {{task.maxScore}}</p>
+    <div id="condition" class="condition">
+      <p>{{{task.condition}}}</p>
+    </div>
+    <br />
+    <div class="what">
+      <p><a href="{{{task.condition_url}}}">Load task condition</a></p>
+      <p>
+        Task from course:
+        <a href="/courses/{{task.course.name}}"><i>{{ task.course.name }}</i></a>
+      </p>
+    </div>
+    {{^user.user}}<div class="modal" id="myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog animate-bottom" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Warning</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+              <span aria-hidden="true">&times;</span>
             </button>
-        </div>
-        {{/user.isAuthor}}
-
-        {{#user.user}}
-        <div class='small'>
-            {{#solutionUrl}}<p>Your score: <a href="{{{solutionUrl}}}">{{score}}</a> / {{maxScore}}</p>{{/solutionUrl}}
-            {{^solutionUrl}}<p>Your score: {{score}} / {{maxScore}}</p>{{/solutionUrl}}
-            <form class="form-inline" method="post" action="/tasks/{{task.id}}/loadSolution" enctype="multipart/form-data">
-                <input type="text" value="{{task.course.id}}" name="course_id" hidden>
-                <input type="text" value="{{task.id_name}}" name="task_id_name" hidden>
-                <input required type="file" name="solution" class="form-control" />
-                <button type="submit" class="btn btn-primary btn-sm">Load solution</button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure to delete this task? In can't be undone.</p>
+          </div>
+          <div class="modal-footer">
+            <form action="/tasks/delete/{{task.id}}" method="post">
+              <button type="submit" class="btn btn-danger">Delete</button>
             </form>
+          </div>
         </div>
-        {{/user.user}}
-
-        <div class="condition">
-            <p>{{{task.condition}}}</p>
-        </div>
-        <br />
-        <div class="what">
-            <p><a href="{{{task.condition_url}}}">Load task condition</a></p>
-            <p>
-                Task from course:
-                <a href="/courses/{{task.course.name}}"><i>{{ task.course.name }}</i></a>
-            </p>
-        </div>
-        {{^user.user}}<div class="modal" id="myModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Warning</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure to delete this task? In can't be undone.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <form action="/tasks/delete/{{task.id}}" method="post">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/user.user}}
-    </main>
-    {{> footer}} {{> scripts}}
-    <script src="/javascripts/modal_window.js"></script>
+      </div>
+    </div>
+    {{/user.user}}
+  </main>
+  {{> footer}} {{> scripts}}
+  <script src="/javascripts/modal_window.js"></script>
 </body>
 
 </html>

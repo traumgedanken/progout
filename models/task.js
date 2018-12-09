@@ -1,7 +1,7 @@
 const Course = require('./course');
-const download = require('download');
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const download = require('download');
 
 const TaskSchema = new mongoose.Schema(
     {
@@ -23,8 +23,7 @@ const TaskSchema = new mongoose.Schema(
         },
         course: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Course',
-            default: '5bdaf25f678fc1158a481822'
+            ref: 'Course'
         }
     },
     {
@@ -93,8 +92,7 @@ class Task {
             .populate('author', 'fullname')
             .populate('course');
         if (!task || !withCondition) return task;
-        const data = await download(task.condition_url);
-        task.condition = data.toString();
+        task.condition = await download(task.condition_url);
         return task;
     }
 

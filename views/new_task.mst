@@ -2,58 +2,61 @@
 <html lang="en">
 
 <head>
-    {{> head}}
-    <title>New task</title>
+  {{> head}}
+  <title>New task</title>
 </head>
 
 <body>
-    {{> header}}
-    <main role="main" class="container">
-        <fieldset>
-            <form action="/tasks/new?course={{course}}" method="post" enctype="multipart/form-data">
-                <!-- Form Name -->
-                <legend>New task</legend>
+  {{> header}}
+  <main role="main" class="container">
+    <fieldset>
+      <form action="/tasks/new?course={{course}}" method="post" enctype="multipart/form-data">
+        <legend>New task</legend>
 
-                <!-- Text input -->
-                <div class="form-group">
-                    <label class="col-md-5 control-label" for="ncourse_nameame">Course name:</label>
-                    <div class="col-md-4">
-                        <input disabled name="course_name" value="{{course}}" type="text" class="form-control input-md" />
-                    </div>
-                </div>
+        <div class="form-group">
+          <label class="col-md-5 control-label" for="ncourse_nameame">Course name:</label>
+          <div class="col-md-4">
+            <input disabled name="course_name" value="{{course}}" type="text" class="form-control input-md" />
+          </div>
+        </div>
 
-                <!-- Text input -->
-                <div class="form-group">
-                    <label class="col-md-5 control-label" for="task_name">Task name:</label>
-                    <div class="col-md-4">
-                        <input name="task_name" type="text" placeholder="Enter task name" class="form-control input-md"
-                            required autofocus minlength="4" maxlength="20" autocomplete="off" />
-                    </div>
-                </div>
+        <div class="form-group">
+          <label class="col-md-5 control-label" for="task_name">Task name:</label>
+          <div class="col-md-4">
+            <input name="task_name" type="text" placeholder="Enter task name" class="form-control input-md" required
+              autofocus minlength="4" maxlength="20" autocomplete="off" />
+          </div>
+        </div>
 
-                <!-- Text input -->
-                <div class="form-group">
-                    <label class="col-md-5 control-label" for="task_id_name">Task identifier:</label>
-                    <div class="col-md-4">
-                        <input name="task_id_name" type="text" placeholder="Enter task identifier" class="form-control input-md"
-                            required minlength="4" maxlength="20" pattern="[a-zA-Z0-9_]+" autocomplete="off" />
-                    </div>
-                </div>
+        <div class="form-group">
+          <label class="col-md-5 control-label" for="task_id_name">Task identifier:</label>
+          <div class="col-md-4">
+            <input name="task_id_name" type="text" placeholder="Enter task identifier" class="form-control input-md"
+              required minlength="4" maxlength="20" pattern="[a-zA-Z0-9_]+" autocomplete="off" />
+          </div>
+        </div>
 
-                <div class="col-md-4">
-                    <div class="form-group files color">
-                        <label>Condition file:</label>
-                        <input type="file" accept=".html, .txt, .md" name="condition" class="form-control" required />
-                    </div>
-                </div>
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-                    Create
-                </button>
-            </form>
-        </fieldset>
-    </main>
+        <div class="form-group">
+          <label class="col-md-5 control-label" for="task_max_score">Max score:</label>
+          <div class="col-md-4">
+            <input name="task_max_score" type="number" min="0" max="8" value="0" class="form-control input-md" required />
+          </div>
+        </div>
 
-    {{> footer}} {{> scripts}}
+        <div class="col-md-4">
+          <div class="form-group files color">
+            <label>Condition file:</label>
+            <input type="file" accept=".html, .txt, .md" name="condition" class="form-control" required />
+          </div>
+        </div>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+          Create
+        </button>
+      </form>
+    </fieldset>
+  </main>
+
+  {{> footer}} {{> scripts}}
 </body>
 
 </html>

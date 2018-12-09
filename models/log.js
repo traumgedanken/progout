@@ -39,19 +39,19 @@ const LogModel = mongoose.model('Log', LogSchema);
 function statusToMessage(status) {
     switch (status) {
         case 400:
-            return 'Погано сформований запит';
+            return 'Bad request';
         case 401:
-            return 'Для перегляду цієї сторніки необхідно авторизуватися';
+            return 'You need to authorize to view this page';
         case 403:
-            return 'У вас недостатньо прав для перегляду цієї сторніки';
+            return 'You have no enough rigths to view this page';
         case 404:
-            return 'На жаль шуканої сторінки не існує';
+            return 'We are sorry, but the page you are looking for does not exist';
         case 500:
-            return 'Сталася неочікувана помилка. Не хвилюйтеся - це наша вина';
+            return "Unexpected error hapenned. Don't worry - it's our fault";
         case 520:
-            return 'Невідома помилка';
+            return 'Unknown error';
         default:
-            return 'Невідома помилка';
+            return 'Unknown error';
     }
 }
 

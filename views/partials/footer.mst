@@ -1,5 +1,5 @@
 <footer class="footer">
-	<div class="container">
-		<span class="text-muted">Eternal happines</span>
-	</div>
+  <div class="container">
+    <span class="text-muted">Eternal happines</span>
+  </div>
 </footer>
