@@ -54,7 +54,7 @@ function startCommand() {
 /check - ___try to send me a notification___`;
 }
 
-// /score
+// /scorE
 function getAllCourses(solutions) {
     if (!solutions.length) return 'You have no solutions.';
     const courses = new Map();
