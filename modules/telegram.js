@@ -56,7 +56,7 @@ function startCommand() {
 
 // /score
 function getAllCourses(solutions) {
-    if (solutions) return 'You have no solutions.';
+    if (!solutions.length) return 'You have no solutions.';
     const courses = new Map();
     for (const solution of solutions)
         courses.set(solution.course.name, courses.get(solution.course.name) || 0 + solution.score);
