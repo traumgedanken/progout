@@ -1,5 +1,5 @@
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">Eternal happines</span>
+    <a href="/developer/v1"><span class="text-muted">API</span></a>
   </div>
 </footer>
