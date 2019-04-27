@@ -59,7 +59,7 @@ function getAllCourses(solutions) {
     if (!solutions.length) return 'You have no solutions.';
     const courses = new Map();
     for (const solution of solutions)
-        courses.set(solution.course.name, courses.get(solution.course.name) || 0 + solution.score);
+        courses.set(solution.course.name, courses.get(solution.course.name) + solution.score || 0);
     let str = 'Your score:\n\n';
     for (const course of courses.keys())
         str += `[${course}](https://progout.herokuapp.com/courses${course}): ${courses.get(
