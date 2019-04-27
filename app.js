@@ -75,7 +75,8 @@ app.get('/', function(req, res) {
         home_button: true,
         user: req.user
     };
-    if (req.user) auth.updateData(data, req);
+    if (req.user)
+        auth.updateData(data, req);
     res.render('index', data);
 });
 
